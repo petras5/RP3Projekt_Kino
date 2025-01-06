@@ -13,6 +13,12 @@ namespace Kino.services
     internal class ProjectionService
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        Label statusLabel;
+
+        public ProjectionService(Label statusLabel)
+        {
+            this.statusLabel = statusLabel;
+        }
         public List<Projection> GetProjections()
         {
             List<Projection> projections = new List<Projection>();
@@ -40,15 +46,15 @@ namespace Kino.services
                         }
                         if (projections.Count == 0)
                         {
-                            MessageBox.Show("No projections found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No projections found in the database.";
+                            //MessageBox.Show("No projections found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No projections found in the database.";
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching projections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching projections: {ex.Message}";
+                    //MessageBox.Show($"Error fetching projections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projections: {ex.Message}";
                     return null;
                 }
             }
@@ -81,16 +87,16 @@ namespace Kino.services
                         }
                         else
                         {
-                            MessageBox.Show("No projection with id " + idProjection + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No projection with given id" + idProjection;
+                            //MessageBox.Show("No projection with id " + idProjection + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No projection with given id" + idProjection;
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching projection by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching projection by id: {ex.Message}";
+                    //MessageBox.Show($"Error fetching projection by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projection by id: {ex.Message}";
                     return null;
                 }
             }
@@ -128,13 +134,15 @@ namespace Kino.services
 
                     if (projections.Count == 0)
                     {
+                        /*
                         MessageBox.Show(
                             $"No projections found for movie ID {idMovie}.",
                             "Information",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
                         );
-                        // statusLabel.Text = $"No projections found for movie ID {idMovie}.";
+                        */
+                        statusLabel.Text = $"No projections found for movie ID {idMovie}.";
                         return null;
                     }
 
@@ -142,13 +150,15 @@ namespace Kino.services
                 }
                 catch (Exception ex)
                 {
+                    /*
                     MessageBox.Show(
                         $"Error fetching projections by movie ID: {ex.Message}",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                    // statusLabel.Text = $"Error fetching projections by movie ID: {ex.Message}";
+                    */
+                    statusLabel.Text = $"Error fetching projections by movie ID: {ex.Message}";
                     return null;
                 }
             }
@@ -163,9 +173,10 @@ namespace Kino.services
                     connection.Open();
 
                     // SQL query to insert a new projection and return the inserted data
-                    string insertQuery = @"INSERT INTO Projection (Id_Hall, Id_Movie, Date, Time, Regular_Price) "
-                    + @"OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price "
-                    + @"VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)";
+                    string insertQuery = @"INSERT INTO Projection (Id_Hall, Id_Movie, Date, Time, Regular_Price) 
+                        VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)
+                        OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price";
+
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
                     insertCommand.Parameters.AddWithValue("@IdHall", idHall);
@@ -190,16 +201,16 @@ namespace Kino.services
                         }
                         else
                         {
-                            MessageBox.Show("Error inserting projection into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            // statusLabel.Text = "Error inserting projection into the database.";
+                            //MessageBox.Show("Error inserting projection into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            statusLabel.Text = "Error inserting projection into the database.";
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error adding projection: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error adding projection: {ex.Message}";
+                    //MessageBox.Show($"Error adding projection: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error adding projection: {ex.Message}";
                     return null;
                 }
             }
@@ -221,19 +232,19 @@ namespace Kino.services
 
                     if (rowsAffected > 0)
                     {
-                        // statusLabel.Text = "Projection deleted successfully.";
+                        statusLabel.Text = "Projection deleted successfully.";
                         return true;
                     }
                     else
                     {
-                        // statusLabel.Text = "No projection found with the given ID.";
+                        statusLabel.Text = "No projection found with the given ID.";
                         return false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error deleting projection: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error deleting projection: {ex.Message}";
+                    //MessageBox.Show($"Error deleting projection: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error deleting projection: {ex.Message}";
                     return false;
                 }
             }
@@ -247,8 +258,8 @@ namespace Kino.services
                 {
                     connection.Open();
 
-                    string query = @"SELECT COUNT(*) FROM Projection WHERE Time < DATEADD(HOUR, 3, @Time) AND @Time < DATEADD(HOUR, 3, Time) "
-                                    + @"AND Id_Hall = @IdHall AND Date = @Date";
+                    string query = @"SELECT COUNT(*) FROM Projection WHERE Time < DATEADD(HOUR, 3, @Time) AND @Time < DATEADD(HOUR, 3, Time) 
+                    AND Id_Hall = @IdHall AND Date = @Date";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Time", time);
@@ -259,8 +270,8 @@ namespace Kino.services
 
                     if (affectedRows > 0)
                     {
-                        MessageBox.Show($"There are {affectedRows} projections in collision for the selected time.", "Collision Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        // statusLabel.Text = $"Collision detected with {affectedRows} projections.";
+                        //MessageBox.Show($"There are {affectedRows} projections in collision for the selected time.", "Collision Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        statusLabel.Text = $"Collision detected with {affectedRows} projections.";
                         return false; // Collision found.
                     }
 
@@ -268,8 +279,8 @@ namespace Kino.services
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error checking for collision: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error checking for collision: {ex.Message}";
+                    //MessageBox.Show($"Error checking for collision: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error checking for collision: {ex.Message}";
                     return false; // Error occurred.
                 }
             }

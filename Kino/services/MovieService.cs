@@ -14,6 +14,12 @@ namespace Kino.model
     internal class MovieService
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        Label statusLabel;
+
+        public MovieService(Label statusLabel)
+        {
+            this.statusLabel = statusLabel;
+        }
         public List<Movie> GetMovies()
         {
             List<Movie> movies = new List<Movie>();
@@ -38,15 +44,15 @@ namespace Kino.model
                         }
                         if (movies.Count == 0)
                         {
-                            MessageBox.Show("No movies found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No movies found in the database.";
+                            //MessageBox.Show("No movies found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No movies found in the database.";
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching movies: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching movies: {ex.Message}";
+                    //MessageBox.Show($"Error fetching movies: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching movies: {ex.Message}";
                     return null;
                 }
             }
@@ -76,16 +82,16 @@ namespace Kino.model
                         }
                         else
                         {
-                            MessageBox.Show("No movie with id " + idMovie + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No movie with given id";
+                            //MessageBox.Show("No movie with id " + idMovie + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No movie with given id";
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching movie by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching movie by id: {ex.Message}";
+                    //MessageBox.Show($"Error fetching movie by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching movie by id: {ex.Message}";
                     return null;
                 }
             }
@@ -116,26 +122,30 @@ namespace Kino.model
                         }
                         else
                         {
+                            /*
                             MessageBox.Show(
                                 $"No movie found for projection ID {idProjection}.",
                                 "Information",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information
                             );
-                            // statusLabel.Text = $"No movie found for projection ID {idProjection}.";
+                            */
+                            statusLabel.Text = $"No movie found for projection ID {idProjection}.";
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
+                    /*
                     MessageBox.Show(
                         $"Error fetching movie by projection ID: {ex.Message}",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                    // statusLabel.Text = $"Error fetching movie by projection ID: {ex.Message}";
+                    */
+                    statusLabel.Text = $"Error fetching movie by projection ID: {ex.Message}";
                     return null;
                 }
             }
@@ -163,21 +173,21 @@ namespace Kino.model
                             string movieName = reader.GetString(1);
                             string movieDescription = reader.GetString(2);
 
-                            // statusLabel.Text = "Movie added successfully.";
+                            statusLabel.Text = "Movie added successfully.";
                             return new Movie(idMovie, movieName, movieDescription);
                         }
                         else
                         {
-                            MessageBox.Show("Error inserting movie into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            // statusLabel.Text = "Error inserting movie into the database.";
+                            //MessageBox.Show("Error inserting movie into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            statusLabel.Text = "Error inserting movie into the database.";
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error adding movie: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error adding movie: {ex.Message}";
+                    //MessageBox.Show($"Error adding movie: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error adding movie: {ex.Message}";
                     return null;
                 }
             }

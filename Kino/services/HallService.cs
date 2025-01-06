@@ -13,6 +13,12 @@ namespace Kino.services
     internal class HallService
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+
+        Label statusLabel;
+        public HallService(Label statusLabel)
+        {
+            this.statusLabel = statusLabel;
+        }
         public List<Hall> GetHalls()
         {
             List<Hall> halls = new List<Hall>();
@@ -37,15 +43,15 @@ namespace Kino.services
                         }
                         if (halls.Count == 0)
                         {
-                            MessageBox.Show("No halls found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No halls found in the database.";
+                            //MessageBox.Show("No halls found in the database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No halls found in the database.";
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching halls: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching halls: {ex.Message}";
+                    //MessageBox.Show($"Error fetching halls: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching halls: {ex.Message}";
                     return null;
                 }
             }
@@ -75,16 +81,16 @@ namespace Kino.services
                         }
                         else
                         {
-                            MessageBox.Show("No hall with id " + idHall + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No hall with given id" + idHall;
+                            //MessageBox.Show("No hall with id " + idHall + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No hall with given id" + idHall;
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error fetching hall by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error fetching hall by id: {ex.Message}";
+                    //MessageBox.Show($"Error fetching hall by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching hall by id: {ex.Message}";
                     return null;
                 }
             }

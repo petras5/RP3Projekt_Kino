@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
@@ -85,6 +88,8 @@
     <Compile Include="services\HallService.cs" />
     <Compile Include="services\MovieService.cs" />
     <Compile Include="services\ProjectionService.cs" />
+    <Compile Include="services\ReservationService.cs" />
+    <Compile Include="services\UserService.cs" />
     <EmbeddedResource Include="FormHomePage.resx">
       <DependentUpon>FormHomePage.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +114,7 @@
     <None Include="CinemaDBDataSet.xss">
       <DependentUpon>CinemaDBDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
