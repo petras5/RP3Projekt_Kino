@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kino.model
 {
-    internal class Projection
+    public class Projection
     {
         public int IdProjection { get; set; }
         public int IdHall { get; set; }

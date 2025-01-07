@@ -52,7 +52,7 @@
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -72,11 +72,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FormHomePage.cs">
+    <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormHomePage.Designer.cs">
-      <DependentUpon>FormHomePage.cs</DependentUpon>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegister.Designer.cs">
+      <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Hall.cs" />
     <Compile Include="model\Movie.cs" />
@@ -90,8 +96,17 @@
     <Compile Include="services\ProjectionService.cs" />
     <Compile Include="services\ReservationService.cs" />
     <Compile Include="services\UserService.cs" />
-    <EmbeddedResource Include="FormHomePage.resx">
+    <Compile Include="view\FormHomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\FormHomePage.Designer.cs">
       <DependentUpon>FormHomePage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="view\FormHomePage.resx">
+      <DependentUpon>FormHomePage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="CinemaDBDataSet.xsc">
       <DependentUpon>CinemaDBDataSet.xsd</DependentUpon>
     </None>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kino.model
 {
-    internal class Hall
+    public class Hall
     {
         public int IdHall { get; set; }
         public int RowCount { get; set; }

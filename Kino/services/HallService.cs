@@ -12,7 +12,7 @@ namespace Kino.services
 {
     internal class HallService
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["Kino.Properties.Settings.CinemaDBConnectionString"].ConnectionString;
 
         Label statusLabel;
         public HallService(Label statusLabel)

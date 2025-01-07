@@ -12,7 +12,7 @@ namespace Kino.services
 {
     internal class ReservationService
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["Kino.Properties.Settings.CinemaDBConnectionString"].ConnectionString;
         Label statusLabel;
 
         public ReservationService(Label statusLabel)

@@ -14,7 +14,7 @@ namespace Kino.services
 {
     internal class UserService
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["Kino.Properties.Settings.CinemaDBConnectionString"].ConnectionString;
         Label statusLabel;
 
         public UserService(Label statusLabel)
@@ -43,7 +43,7 @@ namespace Kino.services
                                 reader.GetString(2),
                                 reader.GetString(3),
                                 reader.GetString(4),
-                                reader.GetInt32(5)
+                                reader.GetByte(5)
                             ));
                         }
                         if (users.Count == 0)
@@ -84,7 +84,7 @@ namespace Kino.services
                                 reader.GetString(2),
                                 reader.GetString(3),
                                 reader.GetString(4),
-                                reader.GetInt32(5)
+                                reader.GetByte(5)
                             );
                         }
                         else
@@ -127,7 +127,7 @@ namespace Kino.services
                                 reader.GetString(2),
                                 reader.GetString(3),
                                 reader.GetString(4),
-                                reader.GetInt32(5)
+                                reader.GetByte(5)
                             );
                         }
                         else
@@ -243,7 +243,7 @@ namespace Kino.services
                             string name = reader.GetString(2);
                             string surname = reader.GetString(3);
                             string passwordHash = reader.GetString(4);
-                            int role = reader.GetInt32(5);
+                            int role = reader.GetByte(5);
 
                             // Verify the password
                             if (VerifyPassword(password, passwordHash))
@@ -254,14 +254,14 @@ namespace Kino.services
                         }
                     }
 
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    // statusLabel.Text = "Invalid username or password.";
+                    //MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    statusLabel.Text = "Invalid username or password.";
                     return null;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error verifying user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // statusLabel.Text = $"Error verifying user: {ex.Message}";
+                    //MessageBox.Show($"Error verifying user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error verifying user: {ex.Message}";
                     return null;
                 }
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kino.model
 {
-    internal class Reservation
+    public class Reservation
     {
         public int IdReservation { get; set; }
         public int IdUser { get; set; }

@@ -13,7 +13,7 @@ namespace Kino.model
 {
     internal class MovieService
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["CinemaDB"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["Kino.Properties.Settings.CinemaDBConnectionString"].ConnectionString;
         Label statusLabel;
 
         public MovieService(Label statusLabel)
