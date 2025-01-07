@@ -102,7 +102,7 @@ namespace Kino
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }

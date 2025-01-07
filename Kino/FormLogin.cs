@@ -62,7 +62,7 @@ namespace Kino
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
             FormRegister.Close();
         }
