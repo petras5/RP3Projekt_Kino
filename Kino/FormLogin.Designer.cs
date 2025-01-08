@@ -119,10 +119,9 @@
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPassword.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPassword.Location = new System.Drawing.Point(42, 186);
-            this.textBoxPassword.Multiline = true;
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(216, 28);
+            this.textBoxPassword.Size = new System.Drawing.Size(216, 30);
             this.textBoxPassword.TabIndex = 1;
             // 
             // labelPassword
@@ -142,9 +141,8 @@
             this.textBoxUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUsername.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsername.Location = new System.Drawing.Point(42, 121);
-            this.textBoxUsername.Multiline = true;
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(216, 28);
+            this.textBoxUsername.Size = new System.Drawing.Size(216, 30);
             this.textBoxUsername.TabIndex = 0;
             // 
             // labelUsername

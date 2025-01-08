@@ -75,9 +75,8 @@
             this.textBoxSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSurname.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSurname.Location = new System.Drawing.Point(47, 135);
-            this.textBoxSurname.Multiline = true;
             this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(194, 24);
+            this.textBoxSurname.Size = new System.Drawing.Size(194, 30);
             this.textBoxSurname.TabIndex = 1;
             // 
             // textBoxPassword
@@ -86,11 +85,11 @@
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPassword.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPassword.Location = new System.Drawing.Point(47, 232);
-            this.textBoxPassword.Multiline = true;
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(194, 24);
+            this.textBoxPassword.Size = new System.Drawing.Size(194, 30);
             this.textBoxPassword.TabIndex = 3;
+            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             // 
             // labelPassword
             // 
@@ -108,10 +107,9 @@
             this.textBoxConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxConfirmPassword.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxConfirmPassword.Location = new System.Drawing.Point(47, 276);
-            this.textBoxConfirmPassword.Multiline = true;
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
             this.textBoxConfirmPassword.PasswordChar = '*';
-            this.textBoxConfirmPassword.Size = new System.Drawing.Size(194, 24);
+            this.textBoxConfirmPassword.Size = new System.Drawing.Size(194, 30);
             this.textBoxConfirmPassword.TabIndex = 4;
             // 
             // labelConfirmPassword
@@ -208,9 +206,8 @@
             this.textBoxUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUsername.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsername.Location = new System.Drawing.Point(47, 184);
-            this.textBoxUsername.Multiline = true;
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(194, 24);
+            this.textBoxUsername.Size = new System.Drawing.Size(194, 30);
             this.textBoxUsername.TabIndex = 2;
             // 
             // textBoxName
@@ -219,9 +216,8 @@
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxName.Font = new System.Drawing.Font("Berlin Sans FB", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxName.Location = new System.Drawing.Point(46, 86);
-            this.textBoxName.Multiline = true;
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(194, 24);
+            this.textBoxName.Size = new System.Drawing.Size(194, 30);
             this.textBoxName.TabIndex = 0;
             // 
             // labelName

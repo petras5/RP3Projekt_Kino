@@ -15,16 +15,17 @@ namespace Kino.view
     {
         User User { get; set; }
         Form FormRegister { get; set; }
+       
         public FormHomePage(Form formRegister, User user)
         {
+            SuspendLayout();
+
             InitializeComponent();
             User = user;
             FormRegister = formRegister;
+            
+            ResumeLayout();
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            FormRegister.Close();
-        }
     }
 }

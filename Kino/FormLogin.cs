@@ -33,7 +33,8 @@ namespace Kino
             User user = userService.VerifyUser(textBoxUsername.Text, textBoxPassword.Text);
             if (user != null)
             {
-                new FormHomePage(FormRegister,user).Show();
+                //new FormHomePage(FormRegister,user).Show();
+                new FormNavigation(FormRegister, user).Show();
                 this.Hide();
             }
         }

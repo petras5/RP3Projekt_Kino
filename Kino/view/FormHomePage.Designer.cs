@@ -28,35 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonExit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // buttonExit
+            // label1
             // 
-            this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExit.Location = new System.Drawing.Point(1203, 0);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(75, 23);
-            this.buttonExit.TabIndex = 0;
-            this.buttonExit.Text = "EXIT";
-            this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(474, 309);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "HOME";
             // 
             // FormHomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.buttonExit);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::Kino.Properties.Resources.background;
+            this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormHomePage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormHomePage";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Label label1;
     }
 }
