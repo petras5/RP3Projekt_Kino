@@ -87,6 +87,7 @@
     <Compile Include="model\Hall.cs" />
     <Compile Include="model\Movie.cs" />
     <Compile Include="model\Projection.cs" />
+    <Compile Include="model\Receipt.cs" />
     <Compile Include="model\Reservation.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Program.cs" />

@@ -37,12 +37,11 @@ namespace Kino.services
                         {
                             reservations.Add(new Reservation(
                                 reader.GetInt32(0),  // Id_Reservation
-                                reader.GetInt32(1),  // Id_User
-                                reader.GetInt32(2),  // Id_Projection
-                                reader.GetInt32(3),  // Row
-                                reader.GetInt32(4),  // Column
-                                reader.GetDecimal(5), // Price
-                                reader.GetDateTime(6) // Created
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
                             ));
                         }
 
@@ -79,13 +78,12 @@ namespace Kino.services
                         if (reader.Read()) // Check if a row exists
                         {
                             return new Reservation(
-                                reader.GetInt32(0), // Id_Reservation
-                                reader.GetInt32(1), // Id_User
-                                reader.GetInt32(2), // Id_Projection
-                                reader.GetInt32(3), // Row
-                                reader.GetInt32(4), // Column
-                                reader.GetDecimal(5), // Price
-                                reader.GetDateTime(6) // Created
+                                reader.GetInt32(0),  // Id_Reservation
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
                             );
                         }
                         else
@@ -106,7 +104,7 @@ namespace Kino.services
         }
 
 
-        public List<Reservation> GetReservationsByUserId(int idUser)
+        public List<Reservation> GetReservationsByReceiptId(int idReceipt)
         {
             List<Reservation> reservations = new List<Reservation>();
 
@@ -115,9 +113,9 @@ namespace Kino.services
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM Reservation WHERE Id_User = @idUser";
+                    string query = "SELECT * FROM Reservation WHERE Id_Receipt = @idReceipt";
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@idUser", idUser);
+                    command.Parameters.AddWithValue("@idReceipt", idReceipt);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -125,27 +123,26 @@ namespace Kino.services
                         {
                             reservations.Add(new Reservation(
                                 reader.GetInt32(0),  // Id_Reservation
-                                reader.GetInt32(1),  // Id_User
-                                reader.GetInt32(2),  // Id_Projection
-                                reader.GetInt32(3),  // Row
-                                reader.GetInt32(4),  // Column
-                                reader.GetDecimal(5), // Price
-                                reader.GetDateTime(6) // Created
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
                             ));
                         }
 
                         if (reservations.Count == 0)
                         {
-                            //MessageBox.Show("No reservations for user with id " + idUser + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            statusLabel.Text = "No reservations for user with id " + idUser + " found.";
+                            //MessageBox.Show("No reservations for user with id " + idReceipt + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No reservations for user with id " + idReceipt + " found.";
                             return null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"Error fetching reservation by user id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    statusLabel.Text = $"Error fetching reservation by user id: {ex.Message}";
+                    //MessageBox.Show($"Error fetching reservation by receipt id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching reservation by receipt id: {ex.Message}";
                     return null;
                 }
             }
@@ -171,12 +168,11 @@ namespace Kino.services
                         {
                             reservations.Add(new Reservation(
                                 reader.GetInt32(0),  // Id_Reservation
-                                reader.GetInt32(1),  // Id_User
-                                reader.GetInt32(2),  // Id_Projection
-                                reader.GetInt32(3),  // Row
-                                reader.GetInt32(4),  // Column
-                                reader.GetDecimal(5), // Price
-                                reader.GetDateTime(6) // Created
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
                             ));
                         }
 
@@ -236,12 +232,11 @@ namespace Kino.services
                         {
                             return new Reservation(
                                 reader.GetInt32(0),  // Id_Reservation
-                                reader.GetInt32(1),  // Id_User
-                                reader.GetInt32(2),  // Id_Projection
-                                reader.GetInt32(3),  // Row
-                                reader.GetInt32(4),  // Column
-                                reader.GetDecimal(5), // Price
-                                reader.GetDateTime(6) // Created
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
                             );
                         }
                         else
@@ -261,7 +256,7 @@ namespace Kino.services
             }
         }
 
-        public Reservation InsertReservation(int idUser, int idProjection, int row, int column, decimal price)
+        public Reservation InsertReservation(int idProjection, int row, int column, decimal price, int idReceipt)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -270,13 +265,13 @@ namespace Kino.services
                     connection.Open();
 
                     // SQL query to insert a new reservation and return the inserted data
-                    string insertQuery = @"INSERT INTO Reservation (Id_User, Id_Projection, Row, Column, Price) 
-                        VALUES (@IdUser, @IdProjection, @Row, @Column, @Price)
-                        OUTPUT INSERTED.Id_Reservation, INSERTED.Id_User, INSERTED.Id_Projection, INSERTED.Row, INSERTED.Column, INSERTED.Price, INSERTED.Created";
+                    string insertQuery = @"INSERT INTO Reservation (Id_Projection, Row, Column, Price, Id_Receipt) 
+                        VALUES (@IdProjection, @Row, @Column, @Price, @IdReceipt)
+                        OUTPUT INSERTED.Id_Reservation, INSERTED.Id_Projection, INSERTED.Row, INSERTED.Column, INSERTED.Price, INSERTED.Id_Receipt";
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
-                    insertCommand.Parameters.AddWithValue("@IdUser", idUser);
+                    insertCommand.Parameters.AddWithValue("@IdReceipt", idReceipt);
                     insertCommand.Parameters.AddWithValue("@IdProjection", idProjection);
                     insertCommand.Parameters.AddWithValue("@Row", row);
                     insertCommand.Parameters.AddWithValue("@Column", column);
@@ -286,16 +281,16 @@ namespace Kino.services
                     {
                         if (reader.Read()) // Check if the reservation was inserted and data was returned
                         {
-                            int idReservation = reader.GetInt32(0);
-                            int userId = reader.GetInt32(1);
-                            int projectionId = reader.GetInt32(2);
-                            int reservedRow = reader.GetInt32(3);
-                            int reservedColumn = reader.GetInt32(4);
-                            decimal reservedPrice = reader.GetDecimal(5);
-                            DateTime created = reader.GetDateTime(6);
-
                             statusLabel.Text = "Reservation inserted successfully.";
-                            return new Reservation(idReservation, userId, projectionId, reservedRow, reservedColumn, reservedPrice, created);
+
+                            return new Reservation(
+                                reader.GetInt32(0),  // Id_Reservation
+                                reader.GetInt32(1),  // Id_Projection
+                                reader.GetInt32(2),  // Row
+                                reader.GetInt32(3),  // Column
+                                reader.GetDecimal(4), // Price
+                                reader.GetInt32(5) // Id_Receipt
+                            );
                         }
                         else
                         {

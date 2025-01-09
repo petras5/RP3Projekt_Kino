@@ -9,22 +9,20 @@ namespace Kino.model
     public class Reservation
     {
         public int IdReservation { get; set; }
-        public int IdUser { get; set; }
         public int IdProjection { get; set; }
         public int Row { get; set; }
         public int Column { get; set; }
         public decimal Price { get; set; }
-        public DateTime Created { get; set; }
+        public int IdReceipt { get; set; }
 
-        public Reservation(int idReservation, int idUser, int idProjection, int row, int column, decimal price, DateTime created)
+        public Reservation(int idReservation, int idProjection, int row, int column, decimal price, int idReceipt)
         {
             IdReservation = idReservation;
-            IdUser = idUser;
             IdProjection = idProjection;
             Row = row;
             Column = column;
             Price = price;
-            Created = created;
+            IdReceipt = idReceipt;
         }
     }
 }
