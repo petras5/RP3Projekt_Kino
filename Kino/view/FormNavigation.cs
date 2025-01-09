@@ -29,12 +29,7 @@ namespace Kino.view
             buttonHome.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormHomePage formHomePage = new FormHomePage(FormRegister, User) 
-            { 
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormHomePage formHomePage = new FormHomePage(FormRegister, this, User);
             formHomePage.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formHomePage);
             formHomePage.Show();
@@ -74,12 +69,7 @@ namespace Kino.view
             buttonHome.BackColor = Color.FromArgb(94, 134, 144); //NERADI, trebalo bi is button clicked, reset buttons, bezveze, nedamise sad...
 
             this.panelFormLoader.Controls.Clear();
-            FormHomePage formHomePage = new FormHomePage(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormHomePage formHomePage = new FormHomePage(FormRegister, this, User);
             formHomePage.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formHomePage);
             formHomePage.Show();
@@ -97,12 +87,7 @@ namespace Kino.view
             buttonReservations.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormReservations formReservations = new FormReservations(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormReservations formReservations = new FormReservations(FormRegister, User);
             formReservations.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formReservations);
             formReservations.Show();
@@ -116,12 +101,7 @@ namespace Kino.view
             buttonProjections.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormProjections formProjections = new FormProjections(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormProjections formProjections = new FormProjections(FormRegister, User);
             formProjections.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formProjections);
             formProjections.Show();
@@ -135,12 +115,7 @@ namespace Kino.view
             buttonNewProjection.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewProjection formNewProjection = new FormNewProjection(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormNewProjection formNewProjection = new FormNewProjection(FormRegister, User);
             formNewProjection.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewProjection);
             formNewProjection.Show();
@@ -154,12 +129,7 @@ namespace Kino.view
             buttonNewMovie.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewMovie formNewMovie = new FormNewMovie(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormNewMovie formNewMovie = new FormNewMovie(FormRegister, User);
             formNewMovie.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewMovie);
             formNewMovie.Show();
@@ -173,12 +143,7 @@ namespace Kino.view
             buttonEmployers.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormEmployers formEmployers = new FormEmployers(FormRegister, User)
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true
-            };
+            FormEmployers formEmployers = new FormEmployers(FormRegister, User);
             formEmployers.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formEmployers);
             formEmployers.Show();

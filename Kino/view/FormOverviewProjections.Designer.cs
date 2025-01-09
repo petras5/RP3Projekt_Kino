@@ -1,6 +1,6 @@
 ﻿namespace Kino.view
 {
-    partial class FormHomePage
+    partial class FormOverviewProjections
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(474, 309);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "HOME";
             // 
             // labelStatus
             // 
             this.labelStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelStatus.AutoSize = true;
+            this.labelStatus.BackColor = System.Drawing.Color.Transparent;
             this.labelStatus.ForeColor = System.Drawing.Color.LightCoral;
-            this.labelStatus.Location = new System.Drawing.Point(12, 9);
+            this.labelStatus.Location = new System.Drawing.Point(33, 33);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 16);
+            this.labelStatus.Size = new System.Drawing.Size(289, 52);
             this.labelStatus.TabIndex = 32;
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // FormHomePage
+            // FormOverviewProjections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.ClientSize = new System.Drawing.Size(1032, 633);
             this.Controls.Add(this.labelStatus);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormHomePage";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormHomePage";
+            this.Name = "FormOverviewProjections";
+            this.Text = "FormOverviewProjections";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelStatus;
     }
 }

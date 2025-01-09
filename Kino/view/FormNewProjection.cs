@@ -20,6 +20,10 @@ namespace Kino.view
             InitializeComponent();
             User = user;
             FormRegister = formRegister;
+
+            Dock = DockStyle.Fill;
+            TopLevel = false;
+            TopMost = true;
         }
 
         //slucajno dodano...

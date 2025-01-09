@@ -11,19 +11,26 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
-    public partial class FormReservations : Form
+    public partial class FormOverviewProjections : Form
     {
+
         User User { get; set; }
         Form FormRegister { get; set; }
-        public FormReservations(Form formRegister, User user)
+
+        string movieID;
+
+        public FormOverviewProjections(Form formRegister, User user, string id)
         {
             InitializeComponent();
             User = user;
             FormRegister = formRegister;
+            movieID = id;
 
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
+
+            labelStatus.Text = $"Movie with index {movieID}";
         }
     }
 }
