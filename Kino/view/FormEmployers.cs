@@ -42,7 +42,7 @@ namespace Kino.view
 
             List<User> users = userService.GetUsers();
 
-            var combobox = (DataGridViewComboBoxColumn)dataGridView1.Columns[3];
+            var combobox = (DataGridViewComboBoxColumn)dataGridView1.Columns[4];
             combobox.DataSource = new BindingSource(roles, null);
             combobox.DisplayMember = "Value";
             combobox.ValueMember = "Key";
@@ -63,15 +63,7 @@ namespace Kino.view
         {
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Role")
             {
-                // Get the updated value
                 var selectedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-
-                // Perform your logic
-                if (selectedValue != null)
-                {
-                    MessageBox.Show($"Role changed to: {selectedValue}");
-                }
-
                 buttonSubmit.Enabled = true;
             }
         }
@@ -86,19 +78,19 @@ namespace Kino.view
             {
                 if (!dataGridView1.Rows[i].IsNewRow)
                 {
-                    var userID = dataGridView1.Rows[i].Cells["User ID"].Value?.ToString();
-                    //var username = dataGridView1.Rows[i].Cells["Username"].Value?.ToString();
-                    //Console.WriteLine($"Row {i}: Username = {username}");
-                    //if() ....TO BE CONTINUED
+                    int userID = (int)dataGridView1.Rows[i].Cells["UserID"].Value;
+                    int role = (int)dataGridView1.Rows[i].Cells["Role"].Value;
+
+                    foreach (User user in users)
+                    {
+                        if(user.IdUser == userID && user.Role != role)
+                        {
+                            userService.UpdateUserRole(userID, role);
+                        }
+                    }
                 }
             }
-
-
-            foreach (User user in users)
-            {
-                
-            }
-
+            buttonSubmit.Enabled = false;
         }
     }
 }
