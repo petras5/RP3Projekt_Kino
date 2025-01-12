@@ -28,7 +28,7 @@ namespace Kino.services
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM Projection";
+                    string query = "SELECT * FROM Projection ORDER BY Date ASC, Time ASC";
                     SqlCommand command = new SqlCommand(query, connection);
 
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -68,7 +68,7 @@ namespace Kino.services
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM Projection WHERE Id_Projection = @idProjection";
+                    string query = "SELECT * FROM Projection WHERE Id_Projection = @idProjection ORDER BY Date ASC, Time ASC";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@idProjection", idProjection);
 
@@ -112,7 +112,7 @@ namespace Kino.services
                 {
                     connection.Open();
 
-                    string query = @"SELECT * FROM Projection WHERE Id_Movie = @idMovie";
+                    string query = @"SELECT * FROM Projection WHERE Id_Movie = @idMovie ORDER BY Date ASC, Time ASC";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@idMovie", idMovie);

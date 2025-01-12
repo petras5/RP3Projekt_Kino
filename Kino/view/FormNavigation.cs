@@ -19,6 +19,7 @@ namespace Kino.view
         public FormNavigation(Form formRegister, User user)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             User = user;
             FormRegister = formRegister;
             labelUsername.Text = $"{user.Name} {user.Surname}";

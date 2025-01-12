@@ -25,6 +25,7 @@ namespace Kino.view
             SuspendLayout();
 
             InitializeComponent();
+            DoubleBuffered = true;
             User = user;
             FormRegister = formRegister;
             FormNavigation = formNavigation;
