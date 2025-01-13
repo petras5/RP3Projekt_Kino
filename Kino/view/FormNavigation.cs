@@ -115,7 +115,7 @@ namespace Kino.view
             buttonNewProjection.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewProjection formNewProjection = new FormNewProjection(FormRegister, User);
+            FormNewProjection formNewProjection = new FormNewProjection(User);
             formNewProjection.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewProjection);
             formNewProjection.Show();
