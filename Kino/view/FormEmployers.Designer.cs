@@ -112,13 +112,12 @@
             // 
             // labelStatus
             // 
-            this.labelStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelStatus.AutoSize = true;
             this.labelStatus.BackColor = System.Drawing.Color.Transparent;
+            this.labelStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelStatus.ForeColor = System.Drawing.Color.LightCoral;
-            this.labelStatus.Location = new System.Drawing.Point(31, 9);
+            this.labelStatus.Location = new System.Drawing.Point(0, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 16);
+            this.labelStatus.Size = new System.Drawing.Size(1050, 38);
             this.labelStatus.TabIndex = 33;
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -190,9 +189,9 @@
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
             this.Controls.Add(this.buttonSubmit);
-            this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormEmployers";
             this.Text = "FormEmployee";
