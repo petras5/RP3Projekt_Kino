@@ -120,7 +120,7 @@ namespace Kino.services
                         if (reader.Read()) // Check if a row exists
                         {
                             //MessageBox.Show("User with username " + username + "already exists.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            statusLabel.Text = "User with username " + username + "already exists.";
+                            statusLabel.Text = "User with username " + username + " already exists.";
                             return new User(
                                 reader.GetInt32(0),
                                 reader.GetString(1),

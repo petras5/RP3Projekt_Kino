@@ -1,4 +1,5 @@
 ﻿using Kino.model;
+using Kino.services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,32 @@ namespace Kino.view
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
+
+            labelStatus.Text = "";
+
+            //FillData();
         }
+
+        /*
+        private void FillData()
+        {
+            UserService userService = new UserService(labelStatus);
+            List<User> users = userService.GetUsers();
+
+            UserService userService = new UserService(labelStatus);
+            List<User> users = userService.GetUsers();
+
+            var combobox = (DataGridViewComboBoxColumn)dataGridView1.Columns[4];
+            combobox.DataSource = new BindingSource(roles, null);
+            combobox.DisplayMember = "Value";
+            combobox.ValueMember = "Key";
+
+            foreach (User user in users)
+            {
+                dataGridView1.Rows.Add(user.IdUser, user.Name, user.Surname, user.Username, user.Role);
+            }
+
+        }
+        */
     }
 }
