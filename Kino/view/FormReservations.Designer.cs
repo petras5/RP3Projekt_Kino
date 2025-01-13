@@ -30,13 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewReceipts = new System.Windows.Forms.DataGridView();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ReceiptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Created = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceipts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +49,7 @@
             this.label1.Size = new System.Drawing.Size(253, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "RESERVATIONS - receipts";
+            this.label1.Visible = false;
             // 
             // dataGridViewReceipts
             // 
@@ -75,32 +76,6 @@
             this.dataGridViewReceipts.TabIndex = 1;
             this.dataGridViewReceipts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceipts_CellClick);
             this.dataGridViewReceipts.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceipts_CellValueChanged);
-            // 
-            // labelStatus
-            // 
-            this.labelStatus.BackColor = System.Drawing.Color.Transparent;
-            this.labelStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelStatus.ForeColor = System.Drawing.Color.LightCoral;
-            this.labelStatus.Location = new System.Drawing.Point(0, 0);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(1050, 38);
-            this.labelStatus.TabIndex = 34;
-            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.buttonDelete.Enabled = false;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Font = new System.Drawing.Font("Berlin Sans FB Demi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.Location = new System.Drawing.Point(15, 620);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(171, 34);
-            this.buttonDelete.TabIndex = 36;
-            this.buttonDelete.Text = "DELETE SELECTED";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // Delete
             // 
@@ -135,6 +110,32 @@
             this.Details.MinimumWidth = 6;
             this.Details.Name = "Details";
             this.Details.ReadOnly = true;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.BackColor = System.Drawing.Color.Transparent;
+            this.labelStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelStatus.ForeColor = System.Drawing.Color.LightCoral;
+            this.labelStatus.Location = new System.Drawing.Point(0, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(1050, 38);
+            this.labelStatus.TabIndex = 34;
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.buttonDelete.Enabled = false;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDelete.Font = new System.Drawing.Font("Berlin Sans FB Demi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.ForeColor = System.Drawing.Color.White;
+            this.buttonDelete.Location = new System.Drawing.Point(15, 620);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(171, 34);
+            this.buttonDelete.TabIndex = 36;
+            this.buttonDelete.Text = "DELETE SELECTED";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormReservations
             // 

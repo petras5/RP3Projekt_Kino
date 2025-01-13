@@ -129,7 +129,7 @@ namespace Kino.view
             buttonNewMovie.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewMovie formNewMovie = new FormNewMovie(FormRegister, User);
+            FormNewMovie formNewMovie = new FormNewMovie(User);
             formNewMovie.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewMovie);
             formNewMovie.Show();

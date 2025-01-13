@@ -57,6 +57,7 @@
             this.label1.Size = new System.Drawing.Size(120, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "employee";
+            this.label1.Visible = false;
             // 
             // dataGridView1
             // 
