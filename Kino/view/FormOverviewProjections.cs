@@ -17,17 +17,18 @@ namespace Kino.view
     {
 
         User User { get; set; }
-        Form FormRegister { get; set; }
-
+        Form FormNavigation { get; set; }
         Movie Movie { get; set; }
+        List<Projection> Projections { get; set; }
 
-        public FormOverviewProjections(Form formRegister, User user, string id)
+        public FormOverviewProjections(Form formNavigation, User user, string id)
         {
             InitializeComponent();
             DoubleBuffered = true;
 
             User = user;
-            FormRegister = formRegister;
+            FormNavigation = formNavigation;
+
             int movieId = Int32.Parse(id);
             pictureBoxMoviePoster.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{movieId}");
             pictureBoxMoviePoster.SizeMode = PictureBoxSizeMode.Zoom;
@@ -37,9 +38,11 @@ namespace Kino.view
             ProjectionService ps = new ProjectionService(labelStatus);
             List<Projection> projections = new List<Projection>();
             projections = ps.GetProjectionsByMovieId(movieId);
+            Projections = projections;
 
             if(projections != null)
             {
+                dataGridViewProjections.SelectionChanged -= new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
                 foreach (Projection projection in projections)
                 {
                     dataGridViewProjections.Rows.Add(new object[]
@@ -51,6 +54,8 @@ namespace Kino.view
                     }
                     );
                 }
+                dataGridViewProjections.ClearSelection();
+                dataGridViewProjections.SelectionChanged += new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
             } else
             {
                 dataGridViewProjections.Visible = false;
@@ -80,9 +85,33 @@ namespace Kino.view
             return hall.ColumnCount * hall.RowCount - numberOfReservations;
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void dataGridViewProjections_SelectionChanged(object sender, EventArgs e)
         {
-            FormRegister.Close();
+            if (dataGridViewProjections.SelectedRows.Count > 0)
+            {
+                int rowIndex = dataGridViewProjections.SelectedRows[0].Index;
+                labelStatus.Text = $"Selected Row Index: {rowIndex}";
+                if(Projections != null)
+                {
+                    labelStatus.Text += "Selected projection: movie id: " + Projections[rowIndex].IdMovie
+                    + ", date: " + Projections[rowIndex].Date
+                    + " time: " + Projections[rowIndex].Time
+                    + " hall: " + Projections[rowIndex].IdHall
+                    + " count: " + dataGridViewProjections.SelectedRows.Count;
+                    foreach (Control control in FormNavigation.Controls)
+                    {
+                        if (control is Panel panel && panel.Name == "panelFormLoader")
+                        {
+                            panel.Controls.Clear();
+                            FormHallSeats formHallSeats = new FormHallSeats(FormNavigation, User, Movie, Projections[rowIndex]);
+                            formHallSeats.TopLevel = false; // Necessary to embed a Form into a Panel.
+                            formHallSeats.Dock = DockStyle.Fill; 
+                            panel.Controls.Add(formHallSeats);
+                            formHallSeats.Show(); 
+                        }
+                    }
+                }
+            }
         }
     }
 }

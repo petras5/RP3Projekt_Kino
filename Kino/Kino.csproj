@@ -52,7 +52,7 @@
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -102,6 +102,12 @@
     </Compile>
     <Compile Include="view\FormEmployers.Designer.cs">
       <DependentUpon>FormEmployers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\FormHallSeats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\FormHallSeats.Designer.cs">
+      <DependentUpon>FormHallSeats.cs</DependentUpon>
     </Compile>
     <Compile Include="view\FormNavigation.cs">
       <SubType>Form</SubType>
@@ -163,6 +169,9 @@
     </Compile>
     <EmbeddedResource Include="view\FormEmployers.resx">
       <DependentUpon>FormEmployers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\FormHallSeats.resx">
+      <DependentUpon>FormHallSeats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\FormHomePage.resx">
       <DependentUpon>FormHomePage.cs</DependentUpon>
@@ -234,6 +243,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>CinemaDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\chair_white.png" />
+    <None Include="Resources\chair_gray.png" />
+    <None Include="Resources\chair_blue.png" />
     <None Include="Resources\Picture1.png" />
     <None Include="Resources\user_icon_white.jpg" />
     <None Include="Resources\user_icon.jpg" />

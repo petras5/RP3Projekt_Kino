@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelStatus = new System.Windows.Forms.Label();
@@ -100,13 +101,25 @@
             this.ColumnHall,
             this.ColumnFreeSeats});
             this.dataGridViewProjections.Location = new System.Drawing.Point(25, 309);
+            this.dataGridViewProjections.MultiSelect = false;
             this.dataGridViewProjections.Name = "dataGridViewProjections";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProjections.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewProjections.RowHeadersVisible = false;
             this.dataGridViewProjections.RowHeadersWidth = 51;
+            this.dataGridViewProjections.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewProjections.RowTemplate.Height = 24;
             this.dataGridViewProjections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewProjections.Size = new System.Drawing.Size(668, 293);
+            this.dataGridViewProjections.Size = new System.Drawing.Size(656, 343);
             this.dataGridViewProjections.TabIndex = 36;
+            this.dataGridViewProjections.TabStop = false;
+            this.dataGridViewProjections.SelectionChanged += new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
             // 
             // ColumnDate
             // 
@@ -143,7 +156,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(1032, 633);
+            this.ClientSize = new System.Drawing.Size(1050, 680);
             this.Controls.Add(this.dataGridViewProjections);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.labelMovieName);
