@@ -28,29 +28,54 @@ namespace Kino.view
 
             labelStatus.Text = "";
 
-            //FillData();
+            FillData();
         }
 
-        /*
+        
         private void FillData()
         {
-            UserService userService = new UserService(labelStatus);
-            List<User> users = userService.GetUsers();
+            dataGridViewReceipts.Rows.Clear();
+
+            ReceiptService receiptService = new ReceiptService(labelStatus);
+            List<Receipt> receipts = receiptService.GetReceipts();
 
             UserService userService = new UserService(labelStatus);
-            List<User> users = userService.GetUsers();
 
-            var combobox = (DataGridViewComboBoxColumn)dataGridView1.Columns[4];
-            combobox.DataSource = new BindingSource(roles, null);
-            combobox.DisplayMember = "Value";
-            combobox.ValueMember = "Key";
-
-            foreach (User user in users)
+            foreach (Receipt receipt in receipts)
             {
-                dataGridView1.Rows.Add(user.IdUser, user.Name, user.Surname, user.Username, user.Role);
+                User user = userService.GetUserById(receipt.IdUser);
+                dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, "view");
+            }
+        }
+
+        private void dataGridViewReceipts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewReceipts.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                buttonDelete.Enabled = true;
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            ReceiptService receiptService = new ReceiptService(labelStatus);
+
+            for (int i = 0; i < dataGridViewReceipts.Rows.Count; i++)
+            {
+                if (!dataGridViewReceipts.Rows[i].IsNewRow)
+                {
+                    int receiptID = (int)dataGridViewReceipts.Rows[i].Cells["ReceiptID"].Value;
+
+                    if ((bool)dataGridViewReceipts.Rows[i].Cells["Delete"].Value == true)
+                    {
+                        receiptService.DeleteReceiptById(receiptID);
+                    }
+                }
             }
 
+            buttonDelete.Enabled = false;
+
+            FillData();
         }
-        */
     }
 }

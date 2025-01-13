@@ -95,6 +95,7 @@
     <Compile Include="services\HallService.cs" />
     <Compile Include="services\MovieService.cs" />
     <Compile Include="services\ProjectionService.cs" />
+    <Compile Include="services\ReceiptService.cs" />
     <Compile Include="services\ReservationService.cs" />
     <Compile Include="services\UserService.cs" />
     <Compile Include="view\FormEmployers.cs">
