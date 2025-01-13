@@ -73,6 +73,7 @@
             this.dataGridViewReceipts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewReceipts.Size = new System.Drawing.Size(1023, 534);
             this.dataGridViewReceipts.TabIndex = 1;
+            this.dataGridViewReceipts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceipts_CellClick);
             this.dataGridViewReceipts.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceipts_CellValueChanged);
             // 
             // labelStatus

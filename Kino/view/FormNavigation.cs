@@ -87,7 +87,7 @@ namespace Kino.view
             buttonReservations.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormReservations formReservations = new FormReservations(FormRegister, User);
+            FormReservations formReservations = new FormReservations(FormRegister, this, User);
             formReservations.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formReservations);
             formReservations.Show();

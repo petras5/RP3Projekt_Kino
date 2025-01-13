@@ -16,11 +16,14 @@ namespace Kino.view
     {
         User User { get; set; }
         Form FormRegister { get; set; }
-        public FormReservations(Form formRegister, User user)
+        Form FormNavigation { get; set; }
+
+        public FormReservations(Form formRegister, Form formNavigation, User user)
         {
             InitializeComponent();
             User = user;
             FormRegister = formRegister;
+            FormNavigation = formNavigation;
 
             Dock = DockStyle.Fill;
             TopLevel = false;
@@ -76,6 +79,25 @@ namespace Kino.view
             buttonDelete.Enabled = false;
 
             FillData();
+        }
+
+        private void dataGridViewReceipts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewReceipts.Columns[e.ColumnIndex].Name == "Details")
+            {
+                int receiptID = (int)dataGridViewReceipts.Rows[e.RowIndex].Cells["ReceiptID"].Value;
+                foreach (Control control in FormNavigation.Controls)
+                {
+                    if (control is Panel panel && panel.Name == "panelFormLoader")
+                    {
+                        panel.Controls.Clear();
+                        FormReceiptDetails formReceiptDetails = new FormReceiptDetails(FormRegister, User, receiptID.ToString());
+                        formReceiptDetails.FormBorderStyle = FormBorderStyle.None;
+                        panel.Controls.Add(formReceiptDetails);
+                        formReceiptDetails.Show();
+                    }
+                }
+            }
         }
     }
 }

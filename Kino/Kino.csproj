@@ -140,6 +140,12 @@
     <Compile Include="view\FormProjections.Designer.cs">
       <DependentUpon>FormProjections.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\FormReceiptDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\FormReceiptDetails.Designer.cs">
+      <DependentUpon>FormReceiptDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\FormReservations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\FormProjections.resx">
       <DependentUpon>FormProjections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\FormReceiptDetails.resx">
+      <DependentUpon>FormReceiptDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\FormReservations.resx">
       <DependentUpon>FormReservations.cs</DependentUpon>
