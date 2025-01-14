@@ -37,6 +37,10 @@ namespace Kino.view
             TopLevel = false;
             TopMost = true;
 
+            labelProjectionDetails.Text = Movie.NameMovie + System.Environment.NewLine
+                + "Date: " + Projection.Date.ToString("dd.MM.yyyy") + System.Environment.NewLine 
+                + "Time: " + Projection.Time;
+
             this.SuspendLayout();
             DrawSeats();
             this.ResumeLayout(false);

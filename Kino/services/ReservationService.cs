@@ -265,9 +265,12 @@ namespace Kino.services
                     connection.Open();
 
                     // SQL query to insert a new reservation and return the inserted data
-                    string insertQuery = @"INSERT INTO Reservation (Id_Projection, Row, Column, Price, Id_Receipt) 
-                        VALUES (@IdProjection, @Row, @Column, @Price, @IdReceipt)
-                        OUTPUT INSERTED.Id_Reservation, INSERTED.Id_Projection, INSERTED.Row, INSERTED.Column, INSERTED.Price, INSERTED.Id_Receipt";
+                    string insertQuery = @"
+                        INSERT INTO Reservation (Id_Projection, [Row], [Column], Price, Id_Receipt)
+                        OUTPUT INSERTED.Id_Reservation, INSERTED.Id_Projection, INSERTED.[Row], INSERTED.[Column], INSERTED.Price, INSERTED.Id_Receipt
+                        VALUES (@IdProjection, @Row, @Column, @Price, @IdReceipt);
+                    ";
+
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
@@ -294,7 +297,7 @@ namespace Kino.services
                         }
                         else
                         {
-                            //MessageBox.Show("Error inserting reservation into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error inserting reservation into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             statusLabel.Text = "Error inserting reservation into the database.";
                             return null;
                         }
@@ -302,7 +305,7 @@ namespace Kino.services
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"Error adding reservation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error adding reservation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     statusLabel.Text = $"Error adding reservation: {ex.Message}";
                     return null;
                 }
