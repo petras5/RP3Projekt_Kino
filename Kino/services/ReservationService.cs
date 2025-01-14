@@ -217,9 +217,9 @@ namespace Kino.services
                 {
                     connection.Open();
                     string query = @"SELECT * FROM Reservation 
-                             WHERE Id_Projection = @IdProjection 
-                             AND Row = @Row 
-                             AND Column = @Col";
+                    WHERE Id_Projection = @IdProjection 
+                    AND [Row] = @Row 
+                    AND [Column] = @Col";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@IdProjection", idProjection);

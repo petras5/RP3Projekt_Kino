@@ -25,6 +25,7 @@ namespace Kino.view
             SuspendLayout();
 
             InitializeComponent();
+            DoubleBuffered = true;
             User = user;
             FormRegister = formRegister;
             FormNavigation = formNavigation;
@@ -96,7 +97,7 @@ namespace Kino.view
                     if (control is Panel panel && panel.Name == "panelFormLoader")
                     {
                         panel.Controls.Clear();
-                        FormOverviewProjections formOverviewProjections = new FormOverviewProjections(FormRegister, User, clickedPictureBox.Tag.ToString());
+                        FormOverviewProjections formOverviewProjections = new FormOverviewProjections(FormNavigation, User, clickedPictureBox.Tag.ToString());
                         formOverviewProjections.FormBorderStyle = FormBorderStyle.None;
                         panel.Controls.Add(formOverviewProjections);
                         formOverviewProjections.Show();
