@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.labelStatus = new System.Windows.Forms.Label();
+            this.labelSelectedSeats = new System.Windows.Forms.Label();
+            this.buttonReserve = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelStatus
@@ -41,22 +43,53 @@
             this.labelStatus.TabIndex = 33;
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // labelSelectedSeats
+            // 
+            this.labelSelectedSeats.AutoSize = true;
+            this.labelSelectedSeats.BackColor = System.Drawing.Color.Transparent;
+            this.labelSelectedSeats.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelectedSeats.ForeColor = System.Drawing.Color.White;
+            this.labelSelectedSeats.Location = new System.Drawing.Point(766, 148);
+            this.labelSelectedSeats.Name = "labelSelectedSeats";
+            this.labelSelectedSeats.Size = new System.Drawing.Size(0, 23);
+            this.labelSelectedSeats.TabIndex = 35;
+            this.labelSelectedSeats.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonReserve
+            // 
+            this.buttonReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.buttonReserve.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReserve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReserve.Font = new System.Drawing.Font("Berlin Sans FB Demi", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReserve.ForeColor = System.Drawing.Color.White;
+            this.buttonReserve.Location = new System.Drawing.Point(770, 567);
+            this.buttonReserve.Name = "buttonReserve";
+            this.buttonReserve.Size = new System.Drawing.Size(216, 35);
+            this.buttonReserve.TabIndex = 36;
+            this.buttonReserve.Text = "RESERVE";
+            this.buttonReserve.UseVisualStyleBackColor = false;
+            // 
             // FormHallSeats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.buttonReserve);
+            this.Controls.Add(this.labelSelectedSeats);
             this.Controls.Add(this.labelStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormHallSeats";
             this.Text = "FormHallSeats";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelSelectedSeats;
+        private System.Windows.Forms.Button buttonReserve;
     }
 }
