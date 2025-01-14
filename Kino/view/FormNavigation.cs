@@ -78,17 +78,15 @@ namespace Kino.view
             panelFormLoader.ResumeLayout();
         }
 
-        private void buttonReservations_Click(object sender, EventArgs e)
+        private void buttonReceipts_Click(object sender, EventArgs e)
         {
-
-
-            panelNavLine.Height = buttonReservations.Height;
-            panelNavLine.Top = buttonReservations.Top;
-            panelNavLine.Left = buttonReservations.Left;
-            buttonReservations.BackColor = Color.FromArgb(94, 134, 144);
+            panelNavLine.Height = buttonReceipts.Height;
+            panelNavLine.Top = buttonReceipts.Top;
+            panelNavLine.Left = buttonReceipts.Left;
+            buttonReceipts.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormReservations formReservations = new FormReservations(FormRegister, this, User);
+            FormReceipts formReservations = new FormReceipts(FormRegister, this, User);
             formReservations.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formReservations);
             formReservations.Show();
@@ -157,7 +155,7 @@ namespace Kino.view
 
         private void buttonReservations_Leave(object sender, EventArgs e)
         {
-            buttonReservations.BackColor = Color.FromArgb(20, 139, 160);
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonProjections_Leave(object sender, EventArgs e)

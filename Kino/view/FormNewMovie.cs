@@ -19,7 +19,7 @@ namespace Kino.view
         {
             InitializeComponent();
             User = user;
-
+            DoubleBuffered = true;
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
@@ -52,7 +52,7 @@ namespace Kino.view
         {
             MovieService movieService = new MovieService(labelStatus);
 
-            Movie newMovie = movieService.InsertMovie(textBoxTitle.Text, textBoxDescription.Text);
+            Movie newMovie = movieService.InsertMovie(textBoxTitle.Text, textBoxDescription.Text, pictureBoxPoster.Image);
 
             //pictureBoxPoster.Image.Save($"movie_{newMovie.IdMovie}");
 

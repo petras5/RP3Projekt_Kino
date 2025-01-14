@@ -33,10 +33,14 @@ namespace Kino.view
             Movie = movie;
             FormNavigation = formNavigation;
             DoubleBuffered = true;
+            Dock = DockStyle.Fill;
+            TopLevel = false;
+            TopMost = true;
 
             this.SuspendLayout();
             DrawSeats();
             this.ResumeLayout(false);
+            buttonReserve.Enabled = false;
         }
 
         private void DrawSeats()
@@ -50,7 +54,7 @@ namespace Kino.view
 
             Label labelScreen = new Label()
             {
-                Location = new Point(64, (hall.RowCount + 1) * (32 + 15)),
+                Location = new Point(64, 30),
                 Size = new Size(hall.ColumnCount * 32, 30),
                 BackColor = Color.White,
                 Text = "SCREEN",
@@ -65,7 +69,7 @@ namespace Kino.view
                 {
                     PictureBox pictureBox = new PictureBox
                     {
-                        Location = new Point(64 + c * 32, 30 + r * (32+15)),
+                        Location = new Point(64 + c * 32, 90 + r * (32+15)),
                         Size = new Size(32, 32),
                         BackColor = Color.Transparent,
                         Tag = new Tuple<int, int>(r + 1, c + 1)
@@ -109,7 +113,7 @@ namespace Kino.view
                     int colHall = tag.Item2; // Column number
                     string newColor = string.Empty;
 
-                    labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} clicked.\n"; // Debug message
+                    //labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} clicked.\n"; 
 
                     // Compare image hashes instead of direct image comparison
                     string currentImage = GetImageHash(p.Image);  // Get hash of current image
@@ -120,22 +124,22 @@ namespace Kino.view
                     if (currentImage == whiteImageHash)
                     {
                         newColor = "blue";
-                        //labelStatus.Text += $"Current image is chairWhiteImage, changing to blue.\n"; // Debug message
+                        //labelStatus.Text += $"Current image is chairWhiteImage, changing to blue.\n";
                     }
                     else if (currentImage == blueImageHash)
                     {
                         newColor = "white";
-                        //labelStatus.Text += $"Current image is chairBlueImage, changing to white.\n"; // Debug message
+                        //labelStatus.Text += $"Current image is chairBlueImage, changing to white.\n"; 
                     }
                     else
                     {
-                        labelStatus.Text += "Image does not match chairWhiteImage or chairBlueImage.\n"; // Debugging case
+                        labelStatus.Text += "Image does not match chairWhiteImage or chairBlueImage.\n"; 
                     }
 
                     // Retrieve the control index from the dictionary
                     if (seatControlIndices.TryGetValue((rowHall, colHall), out controlIndex))
                     {
-                        //labelStatus.Text += $"Got controlIndex: {controlIndex}\n"; // Debugging control index
+                        //labelStatus.Text += $"Got controlIndex: {controlIndex}\n"; 
 
                         // Iterate through controls to find the PictureBox at the correct index
                         int j = 0;
@@ -147,20 +151,25 @@ namespace Kino.view
                                 if (newColor == "blue")
                                 {
                                     pictureBox.Image = chairBlueImage; // Change to blue (selected)
-                                    //labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} changed to blue.\n"; // Debug message
+                                    //labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} changed to blue.\n"; 
                                     if (!selectedSeats.ContainsKey((rowHall, colHall)))
                                     {
                                         selectedSeats[(rowHall, colHall)] = getPriceOfSeat(rowHall, colHall);
+                                        buttonReserve.Enabled = true;
                                         SelectedSeatsPrintInfo();
                                     }
                                 }
                                 else if (newColor == "white")
                                 {
                                     pictureBox.Image = chairWhiteImage; // Change to white (unselected)
-                                    //labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} changed to white.\n"; // Debug message
+                                    //labelStatus.Text += $"Seat at Row {rowHall}, Column {colHall} changed to white.\n"; 
                                     if (selectedSeats.ContainsKey((rowHall, colHall)))
                                     {
                                        selectedSeats.Remove((rowHall, colHall));
+                                       if(selectedSeats.Count == 0)
+                                       {
+                                            buttonReserve.Enabled = false;
+                                       }
                                        SelectedSeatsPrintInfo();
                                     }
                                 }
@@ -228,7 +237,36 @@ namespace Kino.view
 
         private void buttonReserve_Click(object sender, EventArgs e)
         {
+            ReceiptService receiptService = new ReceiptService(labelStatus);
+            ReservationService reservationService = new ReservationService(labelStatus);
 
+            decimal totalPrice = 0m;
+            foreach (var element in selectedSeats)
+            {
+                decimal price = element.Value;
+                totalPrice += price;
+            }
+            Receipt receipt = receiptService.InsertNewReceipt(User.IdUser, totalPrice);
+            if(receipt != null)
+            {
+                foreach (var entry in selectedSeats)
+                {
+                    var (row, col) = entry.Key; // Extract row and column from the tuple
+                    decimal price = entry.Value; // Extract the price associated with the seat
+                    Reservation reservation = reservationService.InsertReservation(Projection.IdProjection, row, col, price, receipt.IdReceipt);
+                }
+                foreach (Control control in FormNavigation.Controls)
+                {
+                    if (control is Panel panel && panel.Name == "panelFormLoader")
+                    {
+                        panel.Controls.Clear();
+                        FormReceiptDetails formReceiptDetails = new FormReceiptDetails(User, receipt);
+                        formReceiptDetails.FormBorderStyle = FormBorderStyle.None;
+                        panel.Controls.Add(formReceiptDetails);
+                        formReceiptDetails.Show();
+                    }
+                }
+            }
         }
     }
 }

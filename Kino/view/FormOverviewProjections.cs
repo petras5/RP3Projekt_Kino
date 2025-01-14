@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,11 +31,19 @@ namespace Kino.view
             FormNavigation = formNavigation;
 
             int movieId = Int32.Parse(id);
-            pictureBoxMoviePoster.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{movieId}");
-            pictureBoxMoviePoster.SizeMode = PictureBoxSizeMode.Zoom;
             MovieService ms = new MovieService(labelStatus);
             Movie = ms.GetMovieById(movieId);
 
+            if (Movie.ImageData != null)
+            {
+
+                pictureBoxMoviePoster.Image = ms.byteArrayToImage(Movie.ImageData, PixelFormat.Format24bppRgb);
+            }
+            else
+            {
+                pictureBoxMoviePoster.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{movieId}");
+            }
+            pictureBoxMoviePoster.SizeMode = PictureBoxSizeMode.Zoom;
             ProjectionService ps = new ProjectionService(labelStatus);
             List<Projection> projections = new List<Projection>();
             projections = ps.GetProjectionsByMovieId(movieId);

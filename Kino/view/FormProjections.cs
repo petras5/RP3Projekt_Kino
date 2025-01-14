@@ -24,6 +24,7 @@ namespace Kino.view
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
+            DoubleBuffered = true;
         }
     }
 }

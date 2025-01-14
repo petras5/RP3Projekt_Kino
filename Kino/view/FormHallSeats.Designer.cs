@@ -68,6 +68,7 @@
             this.buttonReserve.TabIndex = 36;
             this.buttonReserve.Text = "RESERVE";
             this.buttonReserve.UseVisualStyleBackColor = false;
+            this.buttonReserve.Click += new System.EventHandler(this.buttonReserve_Click);
             // 
             // FormHallSeats
             // 

@@ -1,6 +1,6 @@
 ﻿namespace Kino.view
 {
-    partial class FormReservations
+    partial class FormReceipts
     {
         /// <summary>
         /// Required designer variable.

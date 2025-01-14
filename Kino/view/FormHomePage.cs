@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -66,10 +67,19 @@ namespace Kino.view
                     Size = new Size(pictureBoxWidth, pictureBoxHeight),
                     Location = new Point(x, y),
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}"),
+                    /*Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}"),*/
                     Tag = i + 1,
                     BorderStyle = BorderStyle.FixedSingle
                 };
+
+                if (movies[i].ImageData != null) {
+
+                    pictureBox.Image = movieService.byteArrayToImage(movies[i].ImageData, PixelFormat.Format24bppRgb);
+                }
+                else
+                {
+                    pictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}");
+                }
 
                 pictureBox.Click += PictureBox_Click;
 

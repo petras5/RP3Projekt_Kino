@@ -11,12 +11,14 @@ namespace Kino.model
         public int IdMovie { get; set; }
         public string NameMovie { get; set; }
         public string Description { get; set; }
+        public byte[] ImageData { get; set; }
 
-        public Movie(int idMovie, string nameMovie, string description)
+        public Movie(int idMovie, string nameMovie, string description, byte[] imageData)
         {
             IdMovie = idMovie;
             NameMovie = nameMovie;
             Description = description;
+            ImageData = imageData;
         }
     }
 }

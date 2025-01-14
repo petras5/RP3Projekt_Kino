@@ -152,11 +152,11 @@
     <Compile Include="view\FormReceiptDetails.Designer.cs">
       <DependentUpon>FormReceiptDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\FormReservations.cs">
+    <Compile Include="view\FormReceipts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\FormReservations.Designer.cs">
-      <DependentUpon>FormReservations.cs</DependentUpon>
+    <Compile Include="view\FormReceipts.Designer.cs">
+      <DependentUpon>FormReceipts.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -201,8 +201,8 @@
     <EmbeddedResource Include="view\FormReceiptDetails.resx">
       <DependentUpon>FormReceiptDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\FormReservations.resx">
-      <DependentUpon>FormReservations.cs</DependentUpon>
+    <EmbeddedResource Include="view\FormReceipts.resx">
+      <DependentUpon>FormReceipts.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CinemaDBDataSet.xsc">
       <DependentUpon>CinemaDBDataSet.xsd</DependentUpon>

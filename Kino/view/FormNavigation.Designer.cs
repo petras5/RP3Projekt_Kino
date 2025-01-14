@@ -35,7 +35,7 @@
             this.buttonNewMovie = new System.Windows.Forms.Button();
             this.buttonNewProjection = new System.Windows.Forms.Button();
             this.buttonProjections = new System.Windows.Forms.Button();
-            this.buttonReservations = new System.Windows.Forms.Button();
+            this.buttonReceipts = new System.Windows.Forms.Button();
             this.buttonHome = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.panelNavigation.Controls.Add(this.buttonNewMovie);
             this.panelNavigation.Controls.Add(this.buttonNewProjection);
             this.panelNavigation.Controls.Add(this.buttonProjections);
-            this.panelNavigation.Controls.Add(this.buttonReservations);
+            this.panelNavigation.Controls.Add(this.buttonReceipts);
             this.panelNavigation.Controls.Add(this.buttonHome);
             this.panelNavigation.Controls.Add(this.panelUser);
             this.panelNavigation.Dock = System.Windows.Forms.DockStyle.Left;
@@ -156,22 +156,22 @@
             this.buttonProjections.Click += new System.EventHandler(this.buttonProjections_Click);
             this.buttonProjections.Leave += new System.EventHandler(this.buttonProjections_Leave);
             // 
-            // buttonReservations
+            // buttonReceipts
             // 
-            this.buttonReservations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
-            this.buttonReservations.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonReservations.FlatAppearance.BorderSize = 0;
-            this.buttonReservations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReservations.Font = new System.Drawing.Font("Berlin Sans FB Demi", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReservations.ForeColor = System.Drawing.Color.White;
-            this.buttonReservations.Location = new System.Drawing.Point(0, 210);
-            this.buttonReservations.Name = "buttonReservations";
-            this.buttonReservations.Size = new System.Drawing.Size(230, 50);
-            this.buttonReservations.TabIndex = 2;
-            this.buttonReservations.Text = "RESERVATIONS";
-            this.buttonReservations.UseVisualStyleBackColor = false;
-            this.buttonReservations.Click += new System.EventHandler(this.buttonReservations_Click);
-            this.buttonReservations.Leave += new System.EventHandler(this.buttonReservations_Leave);
+            this.buttonReceipts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
+            this.buttonReceipts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonReceipts.FlatAppearance.BorderSize = 0;
+            this.buttonReceipts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReceipts.Font = new System.Drawing.Font("Berlin Sans FB Demi", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReceipts.ForeColor = System.Drawing.Color.White;
+            this.buttonReceipts.Location = new System.Drawing.Point(0, 210);
+            this.buttonReceipts.Name = "buttonReceipts";
+            this.buttonReceipts.Size = new System.Drawing.Size(230, 50);
+            this.buttonReceipts.TabIndex = 2;
+            this.buttonReceipts.Text = "RECEIPTS";
+            this.buttonReceipts.UseVisualStyleBackColor = false;
+            this.buttonReceipts.Click += new System.EventHandler(this.buttonReceipts_Click);
+            this.buttonReceipts.Leave += new System.EventHandler(this.buttonReservations_Leave);
             // 
             // buttonHome
             // 
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Button buttonNewMovie;
         private System.Windows.Forms.Button buttonNewProjection;
         private System.Windows.Forms.Button buttonProjections;
-        private System.Windows.Forms.Button buttonReservations;
+        private System.Windows.Forms.Button buttonReceipts;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Panel panelNavLine;
         private System.Windows.Forms.Panel panelFormLoader;

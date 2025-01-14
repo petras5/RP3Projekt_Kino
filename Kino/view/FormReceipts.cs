@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
-    public partial class FormReservations : Form
+    public partial class FormReceipts : Form
     {
         User User { get; set; }
         Form FormRegister { get; set; }
         Form FormNavigation { get; set; }
 
-        public FormReservations(Form formRegister, Form formNavigation, User user)
+        public FormReceipts(Form formRegister, Form formNavigation, User user)
         {
             InitializeComponent();
             User = user;
@@ -28,6 +28,7 @@ namespace Kino.view
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
+            DoubleBuffered = true;
 
             labelStatus.Text = "";
 
@@ -86,12 +87,14 @@ namespace Kino.view
             if (e.RowIndex >= 0 && dataGridViewReceipts.Columns[e.ColumnIndex].Name == "Details")
             {
                 int receiptID = (int)dataGridViewReceipts.Rows[e.RowIndex].Cells["ReceiptID"].Value;
+                ReceiptService receiptService = new ReceiptService(labelStatus);
+                Receipt receipt = receiptService.GetReceiptById(receiptID);
                 foreach (Control control in FormNavigation.Controls)
                 {
                     if (control is Panel panel && panel.Name == "panelFormLoader")
                     {
                         panel.Controls.Clear();
-                        FormReceiptDetails formReceiptDetails = new FormReceiptDetails(FormRegister, User, receiptID.ToString());
+                        FormReceiptDetails formReceiptDetails = new FormReceiptDetails(User, receipt);
                         formReceiptDetails.FormBorderStyle = FormBorderStyle.None;
                         panel.Controls.Add(formReceiptDetails);
                         formReceiptDetails.Show();

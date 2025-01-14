@@ -14,22 +14,21 @@ namespace Kino.view
     public partial class FormReceiptDetails : Form
     {
         User User { get; set; }
-        Form FormRegister { get; set; }
 
-        string receiptID;
+        Receipt Receipt { get; set; }
 
-        public FormReceiptDetails(Form formRegister, User user, string id)
+        public FormReceiptDetails(User user, Receipt receipt)
         {
             InitializeComponent();
             User = user;
-            FormRegister = formRegister;
-            receiptID = id;
+            Receipt = receipt;
 
             Dock = DockStyle.Fill;
             TopLevel = false;
             TopMost = true;
+            DoubleBuffered = true;
 
-            labelStatus.Text = $"Receipt with index {receiptID}";
+            labelStatus.Text = $"Receipt with index {Receipt.IdReceipt}";
         }
     }
 }

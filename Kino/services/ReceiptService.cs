@@ -38,7 +38,8 @@ namespace Kino.services
                             receipts.Add(new Receipt(
                                 reader.GetInt32(0),  // Id_Receipt
                                 reader.GetInt32(1),  // Id_User
-                                reader.GetDateTime(2) // Created
+                                reader.GetDateTime(2), // Created
+                                reader.GetDecimal(3) // Total
                             ));
                         }
 
@@ -57,6 +58,45 @@ namespace Kino.services
                 }
             }
             return receipts;
+        }
+
+        public Receipt GetReceiptById(int idReceipt)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Receipt WHERE Id_Receipt = @idReceipt";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@idReceipt", idReceipt);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if a row exists
+                        {
+                            return new Receipt(
+                                reader.GetInt32(0),  // Id_Receipt
+                                reader.GetInt32(1),  // Id_User
+                                reader.GetDateTime(2), // Created
+                                reader.GetDecimal(3) // Total
+                            );
+                        }
+                        else
+                        {
+                            //MessageBox.Show("No receipt with id " + idReceipt + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No receipt with given id";
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching receipt by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching receipt by id: {ex.Message}";
+                    return null;
+                }
+            }
         }
 
         public bool DeleteReceiptById(int idReceipt)
@@ -93,7 +133,7 @@ namespace Kino.services
             }
         }
 
-        public Receipt InsertNewReceipt(int idUser)
+        public Receipt InsertNewReceipt(int idUser, decimal total)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -102,24 +142,30 @@ namespace Kino.services
                     connection.Open();
 
                     // Prepare the insert query to add a new receipt
-                    string insertQuery = "INSERT INTO Receipt (IdUser, Created) OUTPUT INSERTED.IdReceipt, INSERTED.IdUser, INSERTED.Created VALUES (@IdUser, @Created)";
+                    string insertQuery = @"
+                INSERT INTO Receipt (Id_User, Created, Total) 
+                OUTPUT INSERTED.Id_Receipt, INSERTED.Id_User, INSERTED.Created, INSERTED.Total 
+                VALUES (@IdUser, @Created, @Total)";
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
                     // Set the parameters
                     insertCommand.Parameters.AddWithValue("@IdUser", idUser);
                     insertCommand.Parameters.AddWithValue("@Created", DateTime.Now);
+                    insertCommand.Parameters.AddWithValue("@Total", total);
 
                     // Execute the query and retrieve the inserted receipt details
                     using (SqlDataReader reader = insertCommand.ExecuteReader())
                     {
                         if (reader.Read()) // Check if the receipt was inserted and data was returned
                         {
-                            int idReceipt = reader.GetInt32(0);
-                            int userId = reader.GetInt32(1);
-                            DateTime createdDate = reader.GetDateTime(2);
-
                             statusLabel.Text = "Receipt added successfully.";
-                            return new Receipt(idReceipt, userId, createdDate);
+
+                            return new Receipt(
+                                reader.GetInt32(0),  // Id_Receipt
+                                reader.GetInt32(1),  // Id_User
+                                reader.GetDateTime(2), // Created
+                                reader.GetDecimal(3) // Total
+                            );
                         }
                         else
                         {
@@ -135,5 +181,6 @@ namespace Kino.services
                 }
             }
         }
+
     }
 }

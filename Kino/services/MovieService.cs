@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +42,8 @@ namespace Kino.model
                             movies.Add(new Movie(
                                 reader.GetInt32(0),
                                 reader.GetString(1),
-                                reader.GetString(2)
+                                reader.GetString(2),
+                                reader["ImageData"] as byte[]
                             ));
                         }
                         if (movies.Count == 0)
@@ -77,7 +81,8 @@ namespace Kino.model
                             return new Movie(
                                 reader.GetInt32(0),
                                 reader.GetString(1),
-                                reader.GetString(2)
+                                reader.GetString(2),
+                                reader["ImageData"] as byte[] 
                             );
                         }
                         else
@@ -92,6 +97,45 @@ namespace Kino.model
                 {
                     //MessageBox.Show($"Error fetching movie by id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     statusLabel.Text = $"Error fetching movie by id: {ex.Message}";
+                    return null;
+                }
+            }
+        }
+
+        public Movie GetMovieByName(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Movie WHERE Name_Movie = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", name);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if a row exists
+                        {
+                            return new Movie(
+                                reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetString(2),
+                                reader["ImageData"] as byte[]
+                            );
+                        }
+                        else
+                        {
+                            //MessageBox.Show("No movie with name " + name + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            statusLabel.Text = "No movie with given name";
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching movie by name: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching movie by name: {ex.Message}";
                     return null;
                 }
             }
@@ -117,7 +161,8 @@ namespace Kino.model
                             return new Movie(
                                 reader.GetInt32(0),
                                 reader.GetString(1),
-                                reader.GetString(2)
+                                reader.GetString(2),
+                                reader["ImageData"] as byte[]
                             );
                         }
                         else
@@ -152,7 +197,7 @@ namespace Kino.model
         }
 
 
-        public Movie InsertMovie(string name, string description)
+        public Movie InsertMovie(string name, string description, Image image)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -160,25 +205,33 @@ namespace Kino.model
                 {
                     connection.Open();
 
-                    string insertQuery = "INSERT INTO Movie (Name_Movie, Description) OUTPUT INSERTED.Id_Movie, INSERTED.Name_Movie, INSERTED.Description VALUES (@Name, @Description)";
+                    // Convert the Image to a byte array
+                    byte[] imageBytes = image != null ? ImageToByteArray(image) : null;
+
+                    string insertQuery = @"
+                INSERT INTO Movie (Name_Movie, Description, ImageData) 
+                OUTPUT INSERTED.Id_Movie, INSERTED.Name_Movie, INSERTED.Description, INSERTED.ImageData
+                VALUES (@Name, @Description, @ImageData)";
+
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@Name", name);
                     insertCommand.Parameters.AddWithValue("@Description", description);
+                    insertCommand.Parameters.AddWithValue("@ImageData", (object)imageBytes ?? DBNull.Value); // Add the image bytes or DBNull
 
                     using (SqlDataReader reader = insertCommand.ExecuteReader())
                     {
                         if (reader.Read()) // Check if the movie was inserted and data was returned
                         {
-                            int idMovie = reader.GetInt32(0);
-                            string movieName = reader.GetString(1);
-                            string movieDescription = reader.GetString(2);
-
                             statusLabel.Text = "Movie added successfully.";
-                            return new Movie(idMovie, movieName, movieDescription);
+                            return new Movie(
+                                reader.GetInt32(0),                // IdMovie
+                                reader.GetString(1),               // NameMovie
+                                reader.GetString(2),               // Description
+                                reader["ImageData"] as byte[]     // ImageData
+                            );
                         }
                         else
                         {
-                            //MessageBox.Show("Error inserting movie into the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             statusLabel.Text = "Error inserting movie into the database.";
                             return null;
                         }
@@ -186,12 +239,12 @@ namespace Kino.model
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"Error adding movie: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     statusLabel.Text = $"Error adding movie: {ex.Message}";
                     return null;
                 }
             }
         }
+
 
         public bool DeleteMovieIfNeeded(int idMovie)
         {
@@ -236,6 +289,28 @@ namespace Kino.model
                     return false;
                 }
             }
+        }
+
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn, PixelFormat format)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            Bitmap bitmap = (Bitmap)returnImage;
+            Bitmap clone = new Bitmap(bitmap.Width, bitmap.Height, format);
+            using (Graphics gr = Graphics.FromImage(clone))
+            {
+                gr.DrawImage(bitmap, new Rectangle(0, 0, clone.Width, clone.Height));
+            }
+            return clone;
         }
 
     }
