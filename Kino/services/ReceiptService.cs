@@ -92,5 +92,48 @@ namespace Kino.services
                 }
             }
         }
+
+        public Receipt InsertNewReceipt(int idUser)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Prepare the insert query to add a new receipt
+                    string insertQuery = "INSERT INTO Receipt (IdUser, Created) OUTPUT INSERTED.IdReceipt, INSERTED.IdUser, INSERTED.Created VALUES (@IdUser, @Created)";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+
+                    // Set the parameters
+                    insertCommand.Parameters.AddWithValue("@IdUser", idUser);
+                    insertCommand.Parameters.AddWithValue("@Created", DateTime.Now);
+
+                    // Execute the query and retrieve the inserted receipt details
+                    using (SqlDataReader reader = insertCommand.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if the receipt was inserted and data was returned
+                        {
+                            int idReceipt = reader.GetInt32(0);
+                            int userId = reader.GetInt32(1);
+                            DateTime createdDate = reader.GetDateTime(2);
+
+                            statusLabel.Text = "Receipt added successfully.";
+                            return new Receipt(idReceipt, userId, createdDate);
+                        }
+                        else
+                        {
+                            statusLabel.Text = "Error inserting receipt into the database.";
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    statusLabel.Text = $"Error adding receipt: {ex.Message}";
+                    return null;
+                }
+            }
+        }
     }
 }
