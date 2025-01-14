@@ -87,7 +87,7 @@ namespace Kino.view
             buttonReservations.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormReservations formReservations = new FormReservations(FormRegister, User);
+            FormReservations formReservations = new FormReservations(FormRegister, this, User);
             formReservations.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formReservations);
             formReservations.Show();
@@ -115,7 +115,7 @@ namespace Kino.view
             buttonNewProjection.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewProjection formNewProjection = new FormNewProjection(FormRegister, User);
+            FormNewProjection formNewProjection = new FormNewProjection(User);
             formNewProjection.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewProjection);
             formNewProjection.Show();
@@ -129,7 +129,7 @@ namespace Kino.view
             buttonNewMovie.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormNewMovie formNewMovie = new FormNewMovie(FormRegister, User);
+            FormNewMovie formNewMovie = new FormNewMovie(User);
             formNewMovie.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formNewMovie);
             formNewMovie.Show();

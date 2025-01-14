@@ -63,7 +63,7 @@ namespace Kino.view
         {
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Role")
             {
-                var selectedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                //var selectedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 buttonSubmit.Enabled = true;
             }
         }
@@ -72,8 +72,6 @@ namespace Kino.view
         {
             UserService userService = new UserService(labelStatus);
 
-            List<User> users = userService.GetUsers();
-
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (!dataGridView1.Rows[i].IsNewRow)
@@ -81,12 +79,11 @@ namespace Kino.view
                     int userID = (int)dataGridView1.Rows[i].Cells["UserID"].Value;
                     int role = (int)dataGridView1.Rows[i].Cells["Role"].Value;
 
-                    foreach (User user in users)
+                    User userChange = userService.GetUserById(userID);
+
+                    if(userChange.Role != role)
                     {
-                        if(user.IdUser == userID && user.Role != role)
-                        {
-                            userService.UpdateUserRole(userID, role);
-                        }
+                        userService.UpdateUserRole(userID, role);
                     }
                 }
             }
