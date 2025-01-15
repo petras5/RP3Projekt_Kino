@@ -43,6 +43,7 @@
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.cinemaDBDataSet = new Kino.CinemaDBDataSet();
             this.cinemaDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelScreenTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDBDataSetBindingSource)).BeginInit();
@@ -183,12 +184,25 @@
             this.cinemaDBDataSetBindingSource.DataSource = this.cinemaDBDataSet;
             this.cinemaDBDataSetBindingSource.Position = 0;
             // 
+            // labelScreenTitle
+            // 
+            this.labelScreenTitle.AutoSize = true;
+            this.labelScreenTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelScreenTitle.Font = new System.Drawing.Font("Berlin Sans FB Demi", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScreenTitle.ForeColor = System.Drawing.Color.White;
+            this.labelScreenTitle.Location = new System.Drawing.Point(15, 22);
+            this.labelScreenTitle.Name = "labelScreenTitle";
+            this.labelScreenTitle.Size = new System.Drawing.Size(120, 27);
+            this.labelScreenTitle.TabIndex = 40;
+            this.labelScreenTitle.Text = "Employers";
+            // 
             // FormEmployers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.labelScreenTitle);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
@@ -217,5 +231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewComboBoxColumn Role;
+        private System.Windows.Forms.Label labelScreenTitle;
     }
 }

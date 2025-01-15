@@ -37,6 +37,7 @@
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
             this.labelStatus = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.labelScreenTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceipts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,18 +138,31 @@
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // FormReservations
+            // labelScreenTitle
+            // 
+            this.labelScreenTitle.AutoSize = true;
+            this.labelScreenTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelScreenTitle.Font = new System.Drawing.Font("Berlin Sans FB Demi", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScreenTitle.ForeColor = System.Drawing.Color.White;
+            this.labelScreenTitle.Location = new System.Drawing.Point(15, 22);
+            this.labelScreenTitle.Name = "labelScreenTitle";
+            this.labelScreenTitle.Size = new System.Drawing.Size(128, 27);
+            this.labelScreenTitle.TabIndex = 39;
+            this.labelScreenTitle.Text = "All receipts";
+            // 
+            // FormReceipts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.labelScreenTitle);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.dataGridViewReceipts);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormReservations";
+            this.Name = "FormReceipts";
             this.Text = "FormReservations";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceipts)).EndInit();
             this.ResumeLayout(false);
@@ -167,5 +181,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Created;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewButtonColumn Details;
+        private System.Windows.Forms.Label labelScreenTitle;
     }
 }

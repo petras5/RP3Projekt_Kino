@@ -27,14 +27,18 @@ namespace Kino.view
 
         private void textBoxTitle_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxDescription.Text != string.Empty && pictureBoxPoster.Image != null)
+            if (textBoxTitle.Text != string.Empty && textBoxDescription.Text != string.Empty && pictureBoxPoster.Image != null)
                 buttonAdd.Enabled = true;
+            if(textBoxTitle.Text == string.Empty)
+                buttonAdd.Enabled= false;
         }
 
         private void textBoxDescription_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxTitle.Text != string.Empty && pictureBoxPoster.Image != null)
+            if (textBoxDescription.Text != string.Empty && textBoxTitle.Text != string.Empty && pictureBoxPoster.Image != null)
                 buttonAdd.Enabled = true;
+            if (textBoxDescription.Text == string.Empty)
+                buttonAdd.Enabled = false;
         }
 
         private void buttonChoose_Click(object sender, EventArgs e)
@@ -52,17 +56,14 @@ namespace Kino.view
         {
             MovieService movieService = new MovieService(labelStatus);
 
-            Movie newMovie = movieService.InsertMovie(textBoxTitle.Text, textBoxDescription.Text, pictureBoxPoster.Image);
-
-            //pictureBoxPoster.Image.Save($"movie_{newMovie.IdMovie}");
-
-            /*
-            string resourcesPath = Path.Combine(Application.StartupPath, "Resources");
-            Directory.CreateDirectory(resourcesPath); // Ensure the Resources folder exists
-
-            string imagePath = Path.Combine(resourcesPath, $"movie_{newMovie.IdMovie}.png");
-            pictureBoxPoster.Image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
-            */
+            if (movieService.GetMovieByName(textBoxTitle.Text) != null)
+            {
+                labelStatus.Text = "Movie with that name already exists.";
+            }
+            else
+            {
+                Movie newMovie = movieService.InsertMovie(textBoxTitle.Text, textBoxDescription.Text, pictureBoxPoster.Image);
+            }
         }
     }
 }

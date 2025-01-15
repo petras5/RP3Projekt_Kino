@@ -15,14 +15,12 @@ namespace Kino.view
     public partial class FormReceipts : Form
     {
         User User { get; set; }
-        Form FormRegister { get; set; }
         Form FormNavigation { get; set; }
 
-        public FormReceipts(Form formRegister, Form formNavigation, User user)
+        public FormReceipts (Form formNavigation, User user)
         {
             InitializeComponent();
             User = user;
-            FormRegister = formRegister;
             FormNavigation = formNavigation;
 
             Dock = DockStyle.Fill;
