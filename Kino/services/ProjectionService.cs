@@ -91,7 +91,7 @@ namespace Kino.services
                         else
                         {
                             //MessageBox.Show("No projection with id " + idProjection + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            statusLabel.Text = "No projection with given id" + idProjection;
+                            //statusLabel.Text = "No projection with given id" + idProjection;
                             return null;
                         }
                     }
@@ -177,8 +177,9 @@ namespace Kino.services
 
                     // SQL query to insert a new projection and return the inserted data
                     string insertQuery = @"INSERT INTO Projection (Id_Hall, Id_Movie, Date, Time, Regular_Price) 
-                        VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)
-                        OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price";
+                        OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price
+                        VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)";
+                       
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
@@ -198,6 +199,8 @@ namespace Kino.services
                             DateTime projectionDate = reader.GetDateTime(3);
                             TimeSpan projectionTime = reader.GetTimeSpan(4);
                             int price = reader.GetInt32(5);
+
+                            statusLabel.Text = "Projection inserted successfully.";
 
                             // Return the newly inserted Projection object
                             return new Projection(idProjection, hallId, movieId, projectionDate, projectionTime, price);

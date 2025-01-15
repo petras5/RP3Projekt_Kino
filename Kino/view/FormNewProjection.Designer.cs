@@ -120,6 +120,7 @@
             this.dateTimePickerTime.Name = "dateTimePickerTime";
             this.dateTimePickerTime.Size = new System.Drawing.Size(200, 27);
             this.dateTimePickerTime.TabIndex = 39;
+            this.dateTimePickerTime.ValueChanged += new System.EventHandler(this.dateTimePickerTime_ValueChanged);
             // 
             // labelDate
             // 
@@ -139,6 +140,7 @@
             this.monthCalendarDate.Location = new System.Drawing.Point(312, 242);
             this.monthCalendarDate.Name = "monthCalendarDate";
             this.monthCalendarDate.TabIndex = 41;
+            this.monthCalendarDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarDate_DateChanged);
             // 
             // labelTime
             // 
@@ -176,6 +178,7 @@
             0,
             0,
             0});
+            this.numericUpDownPrice.ValueChanged += new System.EventHandler(this.numericUpDownPrice_ValueChanged);
             // 
             // buttonAdd
             // 
