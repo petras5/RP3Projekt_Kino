@@ -234,7 +234,7 @@ namespace Kino.view
                 decimal price = entry.Value; // Extract the price associated with the seat
                 totalPrice += price;
 
-                labelSelectedSeats.Text += "\nRow: " + row + " Seat: " + col + " Price: " + price;
+                labelSelectedSeats.Text += "\nRow " + row + " Seat " + col + " Price: " + price;
             }
             labelSelectedSeats.Text += "\nTOTAL PRICE: " + totalPrice;
         }
