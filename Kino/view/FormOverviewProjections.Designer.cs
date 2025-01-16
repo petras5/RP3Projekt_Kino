@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelStatus = new System.Windows.Forms.Label();
             this.pictureBoxMoviePoster = new System.Windows.Forms.PictureBox();
             this.labelMovieName = new System.Windows.Forms.Label();
@@ -91,8 +93,16 @@
             this.dataGridViewProjections.AllowUserToResizeColumns = false;
             this.dataGridViewProjections.AllowUserToResizeRows = false;
             this.dataGridViewProjections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewProjections.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridViewProjections.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridViewProjections.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProjections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewProjections.ColumnHeadersHeight = 40;
             this.dataGridViewProjections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewProjections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -100,21 +110,31 @@
             this.ColumnTime,
             this.ColumnHall,
             this.ColumnFreeSeats});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Berlin Sans FB", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProjections.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewProjections.EnableHeadersVisualStyles = false;
+            this.dataGridViewProjections.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
             this.dataGridViewProjections.Location = new System.Drawing.Point(25, 309);
             this.dataGridViewProjections.MultiSelect = false;
             this.dataGridViewProjections.Name = "dataGridViewProjections";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProjections.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProjections.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewProjections.RowHeadersVisible = false;
             this.dataGridViewProjections.RowHeadersWidth = 51;
             this.dataGridViewProjections.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridViewProjections.RowTemplate.Height = 24;
+            this.dataGridViewProjections.RowTemplate.Height = 40;
             this.dataGridViewProjections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProjections.Size = new System.Drawing.Size(656, 343);
             this.dataGridViewProjections.TabIndex = 36;
@@ -123,18 +143,18 @@
             // 
             // ColumnDate
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnDate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnDate.HeaderText = "Date";
             this.ColumnDate.MinimumWidth = 6;
             this.ColumnDate.Name = "ColumnDate";
             // 
             // ColumnTime
             // 
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnTime.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "t";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ColumnTime.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnTime.HeaderText = "Time";
             this.ColumnTime.MinimumWidth = 6;
             this.ColumnTime.Name = "ColumnTime";
@@ -147,9 +167,11 @@
             // 
             // ColumnFreeSeats
             // 
+            this.ColumnFreeSeats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ColumnFreeSeats.HeaderText = "Free Seats";
             this.ColumnFreeSeats.MinimumWidth = 6;
             this.ColumnFreeSeats.Name = "ColumnFreeSeats";
+            this.ColumnFreeSeats.Width = 125;
             // 
             // FormOverviewProjections
             // 

@@ -30,9 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.dataGridViewProjections = new System.Windows.Forms.DataGridView();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.labelScreenTitle = new System.Windows.Forms.Label();
             this.Delete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MovieTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,8 +43,6 @@
             this.CinemaHall = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FreeSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.labelScreenTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjections)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,16 +73,21 @@
             this.dataGridViewProjections.AllowUserToAddRows = false;
             this.dataGridViewProjections.AllowUserToDeleteRows = false;
             this.dataGridViewProjections.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridViewProjections.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewProjections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewProjections.BackgroundColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProjections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProjections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewProjections.ColumnHeadersHeight = 40;
             this.dataGridViewProjections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewProjections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -92,14 +98,14 @@
             this.CinemaHall,
             this.FreeSeats,
             this.Details});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Berlin Sans FB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProjections.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Berlin Sans FB", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProjections.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewProjections.EnableHeadersVisualStyles = false;
             this.dataGridViewProjections.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(139)))), ((int)(((byte)(160)))));
             this.dataGridViewProjections.Location = new System.Drawing.Point(15, 63);
@@ -112,53 +118,6 @@
             this.dataGridViewProjections.TabIndex = 36;
             this.dataGridViewProjections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProjections_CellClick);
             this.dataGridViewProjections.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProjections_CellValueChanged);
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.MinimumWidth = 6;
-            this.Delete.Name = "Delete";
-            // 
-            // MovieTitle
-            // 
-            this.MovieTitle.HeaderText = "Movie title";
-            this.MovieTitle.MinimumWidth = 6;
-            this.MovieTitle.Name = "MovieTitle";
-            this.MovieTitle.ReadOnly = true;
-            // 
-            // PDate
-            // 
-            this.PDate.HeaderText = "Date";
-            this.PDate.MinimumWidth = 6;
-            this.PDate.Name = "PDate";
-            this.PDate.ReadOnly = true;
-            // 
-            // PTime
-            // 
-            this.PTime.HeaderText = "Time";
-            this.PTime.MinimumWidth = 6;
-            this.PTime.Name = "PTime";
-            this.PTime.ReadOnly = true;
-            // 
-            // CinemaHall
-            // 
-            this.CinemaHall.HeaderText = "Cinema hall";
-            this.CinemaHall.MinimumWidth = 6;
-            this.CinemaHall.Name = "CinemaHall";
-            this.CinemaHall.ReadOnly = true;
-            // 
-            // FreeSeats
-            // 
-            this.FreeSeats.HeaderText = "Free Seats";
-            this.FreeSeats.MinimumWidth = 6;
-            this.FreeSeats.Name = "FreeSeats";
-            // 
-            // Details
-            // 
-            this.Details.HeaderText = "Details";
-            this.Details.MinimumWidth = 6;
-            this.Details.Name = "Details";
-            this.Details.ReadOnly = true;
             // 
             // buttonDelete
             // 
@@ -187,6 +146,72 @@
             this.labelScreenTitle.TabIndex = 38;
             this.labelScreenTitle.Text = "All projections";
             // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Delete.FillWeight = 187.1658F;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.MinimumWidth = 6;
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 71;
+            // 
+            // MovieTitle
+            // 
+            this.MovieTitle.FillWeight = 85.47237F;
+            this.MovieTitle.HeaderText = "Movie title";
+            this.MovieTitle.MinimumWidth = 6;
+            this.MovieTitle.Name = "MovieTitle";
+            this.MovieTitle.ReadOnly = true;
+            // 
+            // PDate
+            // 
+            this.PDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PDate.FillWeight = 67.47818F;
+            this.PDate.HeaderText = "Date";
+            this.PDate.MinimumWidth = 6;
+            this.PDate.Name = "PDate";
+            this.PDate.ReadOnly = true;
+            this.PDate.Width = 81;
+            // 
+            // PTime
+            // 
+            this.PTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PTime.FillWeight = 67.47818F;
+            this.PTime.HeaderText = "Time";
+            this.PTime.MinimumWidth = 6;
+            this.PTime.Name = "PTime";
+            this.PTime.ReadOnly = true;
+            this.PTime.Width = 79;
+            // 
+            // CinemaHall
+            // 
+            this.CinemaHall.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CinemaHall.FillWeight = 67.47818F;
+            this.CinemaHall.HeaderText = "Cinema hall";
+            this.CinemaHall.MinimumWidth = 6;
+            this.CinemaHall.Name = "CinemaHall";
+            this.CinemaHall.ReadOnly = true;
+            this.CinemaHall.Width = 136;
+            // 
+            // FreeSeats
+            // 
+            this.FreeSeats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.FreeSeats.FillWeight = 67.47818F;
+            this.FreeSeats.HeaderText = "Free Seats";
+            this.FreeSeats.MinimumWidth = 6;
+            this.FreeSeats.Name = "FreeSeats";
+            this.FreeSeats.Width = 125;
+            // 
+            // Details
+            // 
+            this.Details.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Details.FillWeight = 157.4491F;
+            this.Details.HeaderText = "Details";
+            this.Details.MinimumWidth = 6;
+            this.Details.Name = "Details";
+            this.Details.ReadOnly = true;
+            this.Details.Width = 72;
+            // 
             // FormProjections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -213,6 +238,7 @@
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DataGridView dataGridViewProjections;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Label labelScreenTitle;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Delete;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovieTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn PDate;
@@ -220,6 +246,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CinemaHall;
         private System.Windows.Forms.DataGridViewTextBoxColumn FreeSeats;
         private System.Windows.Forms.DataGridViewButtonColumn Details;
-        private System.Windows.Forms.Label labelScreenTitle;
     }
 }
