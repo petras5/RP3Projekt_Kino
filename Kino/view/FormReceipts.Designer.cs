@@ -40,6 +40,7 @@
             this.ReceiptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Created = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReceipts)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +84,7 @@
             this.ReceiptID,
             this.Created,
             this.Username,
+            this.Total,
             this.Details});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
@@ -172,6 +174,13 @@
             this.Username.Name = "Username";
             this.Username.ReadOnly = true;
             // 
+            // Total
+            // 
+            this.Total.HeaderText = "TotalPrice";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
             // Details
             // 
             this.Details.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -212,6 +221,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Created;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewButtonColumn Details;
     }
 }

@@ -46,7 +46,7 @@ namespace Kino.view
             foreach (Receipt receipt in receipts)
             {
                 User user = userService.GetUserById(receipt.IdUser);
-                dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, "view");
+                dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, receipt.Total,"view");
             }
         }
 
