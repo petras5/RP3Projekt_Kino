@@ -1,7 +1,10 @@
 ﻿using Kino.model;
+using Org.BouncyCastle.Asn1.X509;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -88,7 +91,7 @@ namespace Kino.services
                         else
                         {
                             //MessageBox.Show("No projection with id " + idProjection + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            statusLabel.Text = "No projection with given id" + idProjection;
+                            //statusLabel.Text = "No projection with given id" + idProjection;
                             return null;
                         }
                     }
@@ -142,7 +145,7 @@ namespace Kino.services
                             MessageBoxIcon.Information
                         );
                         */
-                        statusLabel.Text = $"No projections found for movie ID {idMovie}.";
+                        //statusLabel.Text = $"No projections found for movie ID {idMovie}.";
                         return null;
                     }
 
@@ -174,8 +177,9 @@ namespace Kino.services
 
                     // SQL query to insert a new projection and return the inserted data
                     string insertQuery = @"INSERT INTO Projection (Id_Hall, Id_Movie, Date, Time, Regular_Price) 
-                        VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)
-                        OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price";
+                        OUTPUT INSERTED.Id_Projection, INSERTED.Id_Hall, INSERTED.Id_Movie, INSERTED.Date, INSERTED.Time, INSERTED.Regular_Price
+                        VALUES (@IdHall, @IdMovie, @Date, @Time, @RegularPrice)";
+                       
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
 
@@ -196,6 +200,8 @@ namespace Kino.services
                             TimeSpan projectionTime = reader.GetTimeSpan(4);
                             int price = reader.GetInt32(5);
 
+                            statusLabel.Text = "Projection inserted successfully.";
+
                             // Return the newly inserted Projection object
                             return new Projection(idProjection, hallId, movieId, projectionDate, projectionTime, price);
                         }
@@ -215,7 +221,58 @@ namespace Kino.services
                 }
             }
         }
-        
+
+        public Projection GetProjectionByDateTimeHall(DateTime date, TimeSpan time, int hall)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = @"SELECT * FROM Projection 
+                             WHERE Date = @Date 
+                             AND Time = @Time 
+                             AND Id_Hall = @Hall";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Use appropriate SqlDbType to avoid potential type issues.
+                    command.Parameters.Add("@Date", SqlDbType.Date).Value = date;
+                    command.Parameters.Add("@Time", SqlDbType.Time).Value = time;
+                    command.Parameters.Add("@Hall", SqlDbType.Int).Value = hall;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if a row exists
+                        {
+                            return new Projection(
+                                reader.GetInt32(0),  // Id_Projection
+                                reader.GetInt32(1),  // Id_Hall
+                                reader.GetInt32(2),  // Id_Movie
+                                reader.GetDateTime(3),  // Date
+                                reader.GetTimeSpan(4),  // Time
+                                reader.GetInt32(5)   // Regular_Price
+                            );
+                        }
+                        else
+                        {
+                            // No rows found
+                            statusLabel.Text = "No projection found with the given criteria.";
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception message to the status label
+                    statusLabel.Text = $"Error fetching projection: {ex.Message}";
+                    return null;
+                }
+            }
+        }
+
+
         public bool DeleteProjectionById(int idProjection)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

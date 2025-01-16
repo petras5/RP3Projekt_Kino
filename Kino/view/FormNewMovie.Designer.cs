@@ -39,6 +39,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.buttonChoose = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.labelScreenTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,12 +165,25 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // labelScreenTitle
+            // 
+            this.labelScreenTitle.AutoSize = true;
+            this.labelScreenTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelScreenTitle.Font = new System.Drawing.Font("Berlin Sans FB Demi", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScreenTitle.ForeColor = System.Drawing.Color.White;
+            this.labelScreenTitle.Location = new System.Drawing.Point(53, 22);
+            this.labelScreenTitle.Name = "labelScreenTitle";
+            this.labelScreenTitle.Size = new System.Drawing.Size(177, 27);
+            this.labelScreenTitle.TabIndex = 41;
+            this.labelScreenTitle.Text = "Add new movie";
+            // 
             // FormNewMovie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1032, 633);
+            this.Controls.Add(this.labelScreenTitle);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonChoose);
             this.Controls.Add(this.pictureBoxPoster);
@@ -202,5 +216,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonChoose;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label labelScreenTitle;
     }
 }

@@ -15,12 +15,10 @@ namespace Kino.view
     public partial class FormEmployers : Form
     {
         User User { get; set; }
-        Form FormRegister { get; set; }
-        public FormEmployers(Form formRegister, User user)
+        public FormEmployers(User user)
         {
             InitializeComponent();
             User = user;
-            FormRegister = formRegister;
 
             Dock = DockStyle.Fill;
             TopLevel = false;

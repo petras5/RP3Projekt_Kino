@@ -15,14 +15,12 @@ namespace Kino.view
     public partial class FormReceipts : Form
     {
         User User { get; set; }
-        Form FormRegister { get; set; }
         Form FormNavigation { get; set; }
 
-        public FormReceipts(Form formRegister, Form formNavigation, User user)
+        public FormReceipts (Form formNavigation, User user)
         {
             InitializeComponent();
             User = user;
-            FormRegister = formRegister;
             FormNavigation = formNavigation;
 
             Dock = DockStyle.Fill;
@@ -48,7 +46,7 @@ namespace Kino.view
             foreach (Receipt receipt in receipts)
             {
                 User user = userService.GetUserById(receipt.IdUser);
-                dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, "view");
+                dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, receipt.Total,"view");
             }
         }
 

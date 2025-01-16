@@ -41,6 +41,7 @@
             this.labelPrice = new System.Windows.Forms.Label();
             this.numericUpDownPrice = new System.Windows.Forms.NumericUpDown();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.labelScreenTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             this.labelTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelTitle.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.White;
-            this.labelTitle.Location = new System.Drawing.Point(73, 55);
+            this.labelTitle.Location = new System.Drawing.Point(73, 89);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(97, 23);
             this.labelTitle.TabIndex = 35;
@@ -83,7 +84,7 @@
             // 
             this.comboBoxMovies.Font = new System.Drawing.Font("Berlin Sans FB", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMovies.FormattingEnabled = true;
-            this.comboBoxMovies.Location = new System.Drawing.Point(312, 50);
+            this.comboBoxMovies.Location = new System.Drawing.Point(312, 84);
             this.comboBoxMovies.Name = "comboBoxMovies";
             this.comboBoxMovies.Size = new System.Drawing.Size(329, 28);
             this.comboBoxMovies.TabIndex = 36;
@@ -95,7 +96,7 @@
             this.labelHall.BackColor = System.Drawing.Color.Transparent;
             this.labelHall.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHall.ForeColor = System.Drawing.Color.White;
-            this.labelHall.Location = new System.Drawing.Point(73, 136);
+            this.labelHall.Location = new System.Drawing.Point(73, 170);
             this.labelHall.Name = "labelHall";
             this.labelHall.Size = new System.Drawing.Size(109, 23);
             this.labelHall.TabIndex = 37;
@@ -105,7 +106,7 @@
             // 
             this.comboBoxHalls.Font = new System.Drawing.Font("Berlin Sans FB", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxHalls.FormattingEnabled = true;
-            this.comboBoxHalls.Location = new System.Drawing.Point(312, 131);
+            this.comboBoxHalls.Location = new System.Drawing.Point(312, 165);
             this.comboBoxHalls.Name = "comboBoxHalls";
             this.comboBoxHalls.Size = new System.Drawing.Size(329, 28);
             this.comboBoxHalls.TabIndex = 38;
@@ -119,6 +120,7 @@
             this.dateTimePickerTime.Name = "dateTimePickerTime";
             this.dateTimePickerTime.Size = new System.Drawing.Size(200, 27);
             this.dateTimePickerTime.TabIndex = 39;
+            this.dateTimePickerTime.ValueChanged += new System.EventHandler(this.dateTimePickerTime_ValueChanged);
             // 
             // labelDate
             // 
@@ -126,7 +128,7 @@
             this.labelDate.BackColor = System.Drawing.Color.Transparent;
             this.labelDate.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDate.ForeColor = System.Drawing.Color.White;
-            this.labelDate.Location = new System.Drawing.Point(73, 217);
+            this.labelDate.Location = new System.Drawing.Point(73, 242);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(52, 23);
             this.labelDate.TabIndex = 40;
@@ -135,9 +137,10 @@
             // monthCalendarDate
             // 
             this.monthCalendarDate.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monthCalendarDate.Location = new System.Drawing.Point(312, 217);
+            this.monthCalendarDate.Location = new System.Drawing.Point(312, 242);
             this.monthCalendarDate.Name = "monthCalendarDate";
             this.monthCalendarDate.TabIndex = 41;
+            this.monthCalendarDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarDate_DateChanged);
             // 
             // labelTime
             // 
@@ -157,7 +160,7 @@
             this.labelPrice.BackColor = System.Drawing.Color.Transparent;
             this.labelPrice.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPrice.ForeColor = System.Drawing.Color.White;
-            this.labelPrice.Location = new System.Drawing.Point(73, 561);
+            this.labelPrice.Location = new System.Drawing.Point(73, 543);
             this.labelPrice.Name = "labelPrice";
             this.labelPrice.Size = new System.Drawing.Size(120, 23);
             this.labelPrice.TabIndex = 43;
@@ -166,7 +169,7 @@
             // numericUpDownPrice
             // 
             this.numericUpDownPrice.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownPrice.Location = new System.Drawing.Point(312, 561);
+            this.numericUpDownPrice.Location = new System.Drawing.Point(312, 543);
             this.numericUpDownPrice.Name = "numericUpDownPrice";
             this.numericUpDownPrice.Size = new System.Drawing.Size(120, 26);
             this.numericUpDownPrice.TabIndex = 44;
@@ -175,6 +178,7 @@
             0,
             0,
             0});
+            this.numericUpDownPrice.ValueChanged += new System.EventHandler(this.numericUpDownPrice_ValueChanged);
             // 
             // buttonAdd
             // 
@@ -191,12 +195,25 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // labelScreenTitle
+            // 
+            this.labelScreenTitle.AutoSize = true;
+            this.labelScreenTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelScreenTitle.Font = new System.Drawing.Font("Berlin Sans FB Demi", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScreenTitle.ForeColor = System.Drawing.Color.White;
+            this.labelScreenTitle.Location = new System.Drawing.Point(72, 27);
+            this.labelScreenTitle.Name = "labelScreenTitle";
+            this.labelScreenTitle.Size = new System.Drawing.Size(219, 27);
+            this.labelScreenTitle.TabIndex = 46;
+            this.labelScreenTitle.Text = "Add new projection";
+            // 
             // FormNewProjection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1032, 633);
+            this.Controls.Add(this.labelScreenTitle);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.numericUpDownPrice);
             this.Controls.Add(this.labelPrice);
@@ -234,5 +251,6 @@
         private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.NumericUpDown numericUpDownPrice;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label labelScreenTitle;
     }
 }

@@ -179,7 +179,7 @@ namespace Kino.services
                         if (reservations.Count == 0)
                         {
                             //MessageBox.Show("No reservations for projection with id " + idProjection + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            statusLabel.Text = "No reservations for projection with id " + idProjection + " found.";
+                            //statusLabel.Text = "No reservations for projection with id " + idProjection + " found.";
                             return null;
                         }
                     }
@@ -333,7 +333,7 @@ namespace Kino.services
                     }
                     else
                     {
-                        statusLabel.Text = "No reservation found with the given ID.";
+                        //statusLabel.Text = "No reservation found with the given ID.";
                         return false;
                     }
                 }

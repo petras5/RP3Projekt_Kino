@@ -58,8 +58,17 @@ namespace Kino.view
             comboBoxMovies.SelectedIndex = -1;
 
             comboBoxHalls.Items.Clear();
-            foreach (Hall hall in halls)
-                comboBoxHalls.Items.Add(hall.IdHall);
+
+
+            comboBoxHalls.DataSource = halls;
+            comboBoxHalls.DisplayMember = "IdHall";
+            comboBoxHalls.ValueMember = "IdHall";
+            comboBoxHalls.Text = "Select a hall...";
+            comboBoxHalls.SelectedIndex = -1;
+
+
+            /*foreach (Hall hall in halls)
+                comboBoxHalls.Items.Add(hall.IdHall);*/
         }
 
         //slucajno dodano...
@@ -70,19 +79,17 @@ namespace Kino.view
 
         private void comboBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxHalls.SelectedIndex != -1)
+            if (comboBoxHalls.SelectedIndex != -1 && comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
             {
                 buttonAdd.Enabled = true;
                 labelStatus.Text = comboBoxMovies.SelectedValue.ToString();
             }
-                
 
-            
         }
 
         private void comboBoxHalls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxMovies.SelectedIndex != -1)
+            if (comboBoxMovies.SelectedIndex != -1 && comboBoxHalls.SelectedValue != null && comboBoxMovies.SelectedValue != null)
                 buttonAdd.Enabled = true;
         }
 
@@ -90,21 +97,48 @@ namespace Kino.view
         {
             ProjectionService projectionService = new ProjectionService(labelStatus);
 
-            //DateTime dt = dateTimePickerTime.Value;
-            //TimeSpan st = new Timespan(dt.Hour, dt.Minute, dt.Second);
-            MovieService movieService = new MovieService(labelStatus);
+            DateTime dt = dateTimePickerTime.Value;
+            TimeSpan time = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
 
-            
-            /*
-            if (projectionService.CheckCollision((int)comboBoxHalls.SelectedValue, monthCalendarDate.SelectionStart, dateTimePickerTime.Value.TimeOfDay))
+            DateTime date = monthCalendarDate.SelectionStart;
+
+            if (projectionService.CheckCollision((int)comboBoxHalls.SelectedValue, date, time))
             {
                 Projection newProjection = 
                     projectionService.InsertNewProjection(
                                         (int)comboBoxHalls.SelectedValue,
-                                        comboBoxMovies.SelectedValue.,
+                                        (int)comboBoxMovies.SelectedValue,
+                                        date,
+                                        time,
+                                        (int)numericUpDownPrice.Value
                     );
+                buttonAdd.Enabled = false;
             }
-            */
+            
+        }
+
+        private void monthCalendarDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
+            {
+                buttonAdd.Enabled = true;
+            }
+        }
+
+        private void dateTimePickerTime_ValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
+            {
+                buttonAdd.Enabled = true;
+            }
+        }
+
+        private void numericUpDownPrice_ValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
+            {
+                buttonAdd.Enabled = true;
+            }
         }
     }
 }
