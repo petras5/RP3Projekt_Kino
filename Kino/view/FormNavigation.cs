@@ -30,7 +30,7 @@ namespace Kino.view
             buttonHome.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormHomePage formHomePage = new FormHomePage(FormRegister, this, User);
+            FormHomePage formHomePage = new FormHomePage(this, User);
             formHomePage.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formHomePage);
             formHomePage.Show();
@@ -70,7 +70,7 @@ namespace Kino.view
             buttonHome.BackColor = Color.FromArgb(94, 134, 144); //NERADI, trebalo bi is button clicked, reset buttons, bezveze, nedamise sad...
 
             this.panelFormLoader.Controls.Clear();
-            FormHomePage formHomePage = new FormHomePage(FormRegister, this, User);
+            FormHomePage formHomePage = new FormHomePage(this, User);
             formHomePage.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formHomePage);
             formHomePage.Show();
@@ -142,7 +142,7 @@ namespace Kino.view
             buttonEmployers.BackColor = Color.FromArgb(94, 134, 144);
 
             this.panelFormLoader.Controls.Clear();
-            FormEmployers formEmployers = new FormEmployers(FormRegister, User);
+            FormEmployers formEmployers = new FormEmployers(User);
             formEmployers.FormBorderStyle = FormBorderStyle.None;
             this.panelFormLoader.Controls.Add(formEmployers);
             formEmployers.Show();

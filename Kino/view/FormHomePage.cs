@@ -17,18 +17,16 @@ namespace Kino.view
     public partial class FormHomePage : Form
     {
         User User { get; set; }
-        Form FormRegister { get; set; }
 
         Form FormNavigation { get; set; }
        
-        public FormHomePage(Form formRegister, Form formNavigation, User user)
+        public FormHomePage(Form formNavigation, User user)
         {
             SuspendLayout();
 
             InitializeComponent();
             DoubleBuffered = true;
             User = user;
-            FormRegister = formRegister;
             FormNavigation = formNavigation;
 
             Dock = DockStyle.Fill;
