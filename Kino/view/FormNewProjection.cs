@@ -39,17 +39,6 @@ namespace Kino.view
             List<Hall> halls = hallService.GetHalls();
 
             comboBoxMovies.Items.Clear();
-            /*
-            foreach (Movie movie in movies)
-            {
-                comboBoxMovies.Items.Add(new { movie.IdMovie, movie.NameMovie });
-                comboBoxMovies.ValueMember = movie.IdMovie.ToString();
-                comboBoxMovies.DisplayMember = movie.NameMovie;
-                
-            }
-            */
-            //comboBoxMovies.Items.Add(movie.NameMovie);
-            //comboBox
 
             comboBoxMovies.DataSource = movies;
             comboBoxMovies.DisplayMember = "NameMovie";
@@ -59,16 +48,12 @@ namespace Kino.view
 
             comboBoxHalls.Items.Clear();
 
-
             comboBoxHalls.DataSource = halls;
             comboBoxHalls.DisplayMember = "IdHall";
             comboBoxHalls.ValueMember = "IdHall";
             comboBoxHalls.Text = "Select a hall...";
             comboBoxHalls.SelectedIndex = -1;
 
-
-            /*foreach (Hall hall in halls)
-                comboBoxHalls.Items.Add(hall.IdHall);*/
         }
 
         //slucajno dodano...

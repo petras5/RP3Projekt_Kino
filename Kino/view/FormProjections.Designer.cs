@@ -46,6 +46,8 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonFilter = new System.Windows.Forms.Button();
             this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxHallFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjections)).BeginInit();
             this.SuspendLayout();
             // 
@@ -249,12 +251,35 @@
             this.dateTimePickerDate.CustomFormat = "";
             this.dateTimePickerDate.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDate.Location = new System.Drawing.Point(558, 36);
+            this.dateTimePickerDate.Location = new System.Drawing.Point(355, 36);
             this.dateTimePickerDate.Name = "dateTimePickerDate";
             this.dateTimePickerDate.Size = new System.Drawing.Size(228, 29);
             this.dateTimePickerDate.TabIndex = 40;
             this.dateTimePickerDate.Value = new System.DateTime(2025, 1, 17, 0, 0, 0, 0);
             this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
+            // 
+            // comboBoxHallFilter
+            // 
+            this.comboBoxHallFilter.Font = new System.Drawing.Font("Berlin Sans FB Demi", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxHallFilter.FormattingEnabled = true;
+            this.comboBoxHallFilter.Location = new System.Drawing.Point(665, 36);
+            this.comboBoxHallFilter.Name = "comboBoxHallFilter";
+            this.comboBoxHallFilter.Size = new System.Drawing.Size(121, 29);
+            this.comboBoxHallFilter.TabIndex = 43;
+            this.comboBoxHallFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxHallFilter_SelectedIndexChanged);
+            this.comboBoxHallFilter.SelectedValueChanged += new System.EventHandler(this.comboBoxHallFilter_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Berlin Sans FB Demi", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(598, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 27);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Hall:";
             // 
             // FormProjections
             // 
@@ -262,6 +287,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxHallFilter);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonFilter);
             this.Controls.Add(this.dateTimePickerDate);
@@ -294,5 +321,7 @@
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonFilter;
         private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.ComboBox comboBoxHallFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

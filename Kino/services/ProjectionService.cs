@@ -105,8 +105,10 @@ namespace Kino.services
             }
         }
 
-        public Projection GetProjectionByHallId(int idHall)
+        public List<Projection> GetProjectionByHallId(int idHall)
         {
+
+            List<Projection> projections = new List<Projection>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -118,29 +120,30 @@ namespace Kino.services
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read()) // Check if a row exists
+                        while (reader.Read())
                         {
-                            return new Projection(
+                            projections.Add(new Projection(
                                 reader.GetInt32(0),
                                 reader.GetInt32(1),
                                 reader.GetInt32(2),
                                 reader.GetDateTime(3),
                                 reader.GetTimeSpan(4),
                                 reader.GetInt32(5)
-                            );
+                            ));
                         }
-                        else
+                        if (projections.Count == 0)
                         {
-                            //MessageBox.Show("No projection with hall id " + idHall + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //statusLabel.Text = "No projection with given hall id" + idHall;
+                            //statusLabel.Text = $"No projections found for hall ID {hallId}.";
                             return null;
                         }
+
+                        return projections;
                     }
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"Error fetching projection by hall id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    statusLabel.Text = $"Error fetching projection by hall id: {ex.Message}";
+                    //MessageBox.Show($"Error fetching projections by hall: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projections by hall: {ex.Message}";
                     return null;
                 }
             }

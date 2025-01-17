@@ -10,6 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Kino.view
 {
@@ -38,6 +39,17 @@ namespace Kino.view
             dateTimePickerDate.CustomFormat = " ";
             dateTimePickerDate.Format = DateTimePickerFormat.Custom;
             buttonFilter.Enabled = false;
+
+            HallService hallService = new HallService(labelStatus);
+            List<Hall> halls = hallService.GetHalls();
+
+            comboBoxHallFilter.Items.Clear();
+
+            comboBoxHallFilter.DataSource = halls;
+            comboBoxHallFilter.DisplayMember = "IdHall";
+            comboBoxHallFilter.ValueMember = "IdHall";
+            comboBoxHallFilter.Text = "Select a hall...";
+            comboBoxHallFilter.SelectedIndex = -1;
 
             FillData();
         }
@@ -78,6 +90,47 @@ namespace Kino.view
                 }
             }
         }
+
+        private void FillDataFilterHallDate()
+        {
+            dataGridViewProjections.Rows.Clear();
+
+            ProjectionService projectionService = new ProjectionService(labelStatus);
+            List<Projection> projections = projectionService.GetProjectionsByHallDate(selectedDate, (int)comboBoxHallFilter.SelectedValue);
+
+            MovieService movieService = new MovieService(labelStatus);
+            ReservationService rs = new ReservationService(labelStatus);
+
+            if (projections != null) // bez ovog exception
+            {
+                foreach (Projection projection in projections)
+                {
+                    Movie movie = movieService.GetMovieById(projection.IdMovie);
+                    dataGridViewProjections.Rows.Add(false, movie.NameMovie, projection.Date.ToString("dd.MM.yyyy"), projection.Time, projection.IdHall, rs.GetNumberOfReservationsByProjectionId(projection.IdProjection), getNumberOfFreeSeats(projection), "view");
+                }
+            }
+        }
+
+        private void FillDataFilterHall()
+        {
+            dataGridViewProjections.Rows.Clear();
+
+            ProjectionService projectionService = new ProjectionService(labelStatus);
+            List<Projection> projections = projectionService.GetProjectionByHallId((int)comboBoxHallFilter.SelectedValue);
+
+            MovieService movieService = new MovieService(labelStatus);
+            ReservationService rs = new ReservationService(labelStatus);
+
+            if (projections != null) // bez ovog exception
+            {
+                foreach (Projection projection in projections)
+                {
+                    Movie movie = movieService.GetMovieById(projection.IdMovie);
+                    dataGridViewProjections.Rows.Add(false, movie.NameMovie, projection.Date.ToString("dd.MM.yyyy"), projection.Time, projection.IdHall, rs.GetNumberOfReservationsByProjectionId(projection.IdProjection), getNumberOfFreeSeats(projection), "view");
+                }
+            }
+        }
+
         public int getNumberOfFreeSeats(Projection projection)
         {
             HallService hs = new HallService(labelStatus);
@@ -178,18 +231,18 @@ namespace Kino.view
 
         private void buttonFilter_Click(object sender, EventArgs e)
         {
-            if(datePicked) // ako je odabran datum za filtriranje
+            if(datePicked && comboBoxHallFilter.SelectedIndex == -1) // ako je odabran datum za filtriranje
             {
                 FillDataFilterDate();
             }
-            /* 3 slucaja 
-             * 1. dataPicked = true && odabranadvorana
-             * 2. dataPicked = true && nije odabrana dvorana
-             * 3. dataPicked = false && odabrana dvorana
-             * napisala sam ti u ProjectionService funkcije GetProjectionByHallId(int idHall)
-             * i GetProjectionsByHallDate(DateTime date, int hallId) kojoj za argument
-             * dajes ovu public varijablu selectedDate
-            */
+            else if(datePicked && comboBoxHallFilter.SelectedIndex != -1)
+            {
+                FillDataFilterHallDate();
+            }
+            else if(!datePicked && comboBoxHallFilter.SelectedIndex != -1)
+            {
+                FillDataFilterHall();
+            }
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -197,6 +250,7 @@ namespace Kino.view
             datePicked = false;
             buttonFilter.Enabled = false;
             dateTimePickerDate.CustomFormat = " ";
+            comboBoxHallFilter.SelectedIndex = -1;
             FillData();
         }
 
@@ -206,6 +260,28 @@ namespace Kino.view
             datePicked = true;
             selectedDate = dateTimePickerDate.Value.Date;
             dateTimePickerDate.CustomFormat = "dd.MM.yyyy";
+        }
+
+        private void comboBoxHallFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxHallFilter.SelectedIndex != -1)
+            {
+                buttonFilter.Enabled = true;
+            }
+            else if((comboBoxHallFilter.SelectedIndex == -1 || string.IsNullOrEmpty(comboBoxHallFilter.Text)) && !datePicked)
+            {
+                //labelStatus.Text = "bla";
+                buttonFilter.Enabled = false;
+            }
+        }
+
+        private void comboBoxHallFilter_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBoxHallFilter.SelectedIndex == -1 || string.IsNullOrEmpty(comboBoxHallFilter.Text)) && !datePicked)
+            {
+                //labelStatus.Text = "blabla";
+                buttonFilter.Enabled = false;
+            }
         }
     }
 }
