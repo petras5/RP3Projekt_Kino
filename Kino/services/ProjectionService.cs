@@ -307,6 +307,8 @@ namespace Kino.services
             }
         }
 
+        /*
+
         public bool CheckCollision(int idHall, DateTime date, TimeSpan time)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -337,6 +339,70 @@ namespace Kino.services
                 catch (Exception ex)
                 {
                     //MessageBox.Show($"Error checking for collision: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error checking for collision: {ex.Message}";
+                    return false; // Error occurred.
+                }
+            }
+        }
+
+        */
+        public bool CheckCollision(int idHall, DateTime date, TimeSpan time)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    TimeSpan lowerBound = time - TimeSpan.FromHours(3);
+                    TimeSpan upperBound = time + TimeSpan.FromHours(3);
+
+                    string query;
+                    bool crossesMidnight = upperBound > TimeSpan.FromHours(24);
+                    DateTime dateAfter = date.AddDays(1);
+                    if (crossesMidnight)
+                    {
+                        upperBound -= TimeSpan.FromHours(24); // Wrap around midnight
+                        query = @"SELECT COUNT(*) 
+                             FROM Projection 
+                             WHERE (Date = @Date AND Time > @LowerBound)
+                             OR (Date = @DateAfter AND Time < @UpperBound)";
+
+                    } 
+                    else
+                    {
+                        query = @"SELECT COUNT(*) 
+                             FROM Projection 
+                             WHERE 
+                                 Time BETWEEN @LowerBound AND @UpperBound AND
+                                 Id_Hall = @IdHall AND 
+                                 Date = @Date";
+                    }
+
+
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@LowerBound", lowerBound);
+                    command.Parameters.AddWithValue("@UpperBound", upperBound);
+                    command.Parameters.AddWithValue("@IdHall", idHall);
+                    command.Parameters.AddWithValue("@Date", date);
+                    command.Parameters.AddWithValue("@DateAfter", dateAfter);
+
+                    // Use ExecuteScalar to get the count result
+                    int affectedRows = (int)command.ExecuteScalar();
+
+                    if (affectedRows > 0)
+                    {
+                        // MessageBox.Show($"There are {affectedRows} projections in collision for the selected time.", "Collision Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        statusLabel.Text = $"Collision detected with {affectedRows} projections.";
+                        return false; // Collision found.
+                    }
+
+                    return true; // No collision.
+                }
+                catch (Exception ex)
+                {
+                    // MessageBox.Show($"Error checking for collision: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     statusLabel.Text = $"Error checking for collision: {ex.Message}";
                     return false; // Error occurred.
                 }
