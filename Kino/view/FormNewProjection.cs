@@ -102,20 +102,6 @@ namespace Kino.view
 
             DateTime date = monthCalendarDate.SelectionStart;
 
-            List<Projection> projections = projectionService.GetProjections();
-
-            bool collision = false;
-
-            /*
-            foreach(Projection projection in projections)
-            {
-                if(projection.Date.ToString("dd.MM.yyyy") != date.ToString())
-                {
-                    if(projec)
-                }
-            }
-            */
-
             if (projectionService.CheckCollision((int)comboBoxHalls.SelectedValue, date, time))
             {
                 Projection newProjection = 

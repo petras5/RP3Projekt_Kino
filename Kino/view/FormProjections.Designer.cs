@@ -41,6 +41,7 @@
             this.PDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CinemaHall = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReservedSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FreeSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjections)).BeginInit();
@@ -96,6 +97,7 @@
             this.PDate,
             this.PTime,
             this.CinemaHall,
+            this.ReservedSeats,
             this.FreeSeats,
             this.Details});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -193,6 +195,15 @@
             this.CinemaHall.ReadOnly = true;
             this.CinemaHall.Width = 136;
             // 
+            // ReservedSeats
+            // 
+            this.ReservedSeats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ReservedSeats.HeaderText = "Reserved Seats";
+            this.ReservedSeats.MinimumWidth = 6;
+            this.ReservedSeats.Name = "ReservedSeats";
+            this.ReservedSeats.ReadOnly = true;
+            this.ReservedSeats.Width = 164;
+            // 
             // FreeSeats
             // 
             this.FreeSeats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -244,6 +255,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn CinemaHall;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReservedSeats;
         private System.Windows.Forms.DataGridViewTextBoxColumn FreeSeats;
         private System.Windows.Forms.DataGridViewButtonColumn Details;
     }

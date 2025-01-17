@@ -354,20 +354,8 @@ namespace Kino.services
                 {
                     connection.Open();
 
-                    /*
-                        string query = @"SELECT COUNT(*) 
-FROM Projection
-WHERE Time BETWEEN DATEADD(HOUR, -3, @Time) AND DATEADD(HOUR, 3, @Time) 
-AND Id_Hall = @IdHall
-AND Date = @Date";*/
                     TimeSpan lowerBound = time - TimeSpan.FromHours(3);
                     TimeSpan upperBound = time + TimeSpan.FromHours(3);
-
-                    /*string query = @"SELECT COUNT(*) FROM Projection 
-                             WHERE [Time] < DATEADD(HOUR, 3, CAST(@Time AS DATETIME)) 
-                             AND @Time < DATEADD(HOUR, 3,  CAST([Time] AS DATETIME)) 
-                             AND Id_Hall = @IdHall 
-                             AND Date = @Date";*/
 
                     string query;
                     bool crossesMidnight = upperBound > TimeSpan.FromHours(24);
@@ -394,7 +382,6 @@ AND Date = @Date";*/
 
 
                     SqlCommand command = new SqlCommand(query, connection);
-                    //command.Parameters.AddWithValue("@Time", time);
                     command.Parameters.AddWithValue("@LowerBound", lowerBound);
                     command.Parameters.AddWithValue("@UpperBound", upperBound);
                     command.Parameters.AddWithValue("@IdHall", idHall);

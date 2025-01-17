@@ -68,6 +68,11 @@ namespace Kino.view
             panelNavLine.Top = buttonHome.Top;
             panelNavLine.Left = buttonHome.Left;
             buttonHome.BackColor = Color.FromArgb(94, 134, 144); //NERADI, trebalo bi is button clicked, reset buttons, bezveze, nedamise sad...
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
+            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormHomePage formHomePage = new FormHomePage(this, User);
@@ -84,6 +89,11 @@ namespace Kino.view
             panelNavLine.Top = buttonReceipts.Top;
             panelNavLine.Left = buttonReceipts.Left;
             buttonReceipts.BackColor = Color.FromArgb(94, 134, 144);
+            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
+            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormReceipts formReservations = new FormReceipts(this, User);
@@ -98,6 +108,11 @@ namespace Kino.view
             panelNavLine.Top = buttonProjections.Top;
             panelNavLine.Left = buttonProjections.Left;
             buttonProjections.BackColor = Color.FromArgb(94, 134, 144);
+            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
+            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormProjections formProjections = new FormProjections(this, User);
@@ -112,6 +127,11 @@ namespace Kino.view
             panelNavLine.Top = buttonNewProjection.Top;
             panelNavLine.Left = buttonNewProjection.Left;
             buttonNewProjection.BackColor = Color.FromArgb(94, 134, 144);
+            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
+            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormNewProjection formNewProjection = new FormNewProjection(User);
@@ -126,6 +146,11 @@ namespace Kino.view
             panelNavLine.Top = buttonNewMovie.Top;
             panelNavLine.Left = buttonNewMovie.Left;
             buttonNewMovie.BackColor = Color.FromArgb(94, 134, 144);
+            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormNewMovie formNewMovie = new FormNewMovie(User);
@@ -140,6 +165,11 @@ namespace Kino.view
             panelNavLine.Top = buttonEmployers.Top;
             panelNavLine.Left = buttonEmployers.Left;
             buttonEmployers.BackColor = Color.FromArgb(94, 134, 144);
+            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
 
             this.panelFormLoader.Controls.Clear();
             FormEmployers formEmployers = new FormEmployers(User);
@@ -148,34 +178,39 @@ namespace Kino.view
             formEmployers.Show();
         }
 
+        
         private void buttonHome_Leave(object sender, EventArgs e)
         {
-            buttonHome.BackColor = Color.FromArgb(20, 139, 160);
+            //buttonHome.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonReservations_Leave(object sender, EventArgs e)
         {
-            buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
+            //buttonReceipts.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonProjections_Leave(object sender, EventArgs e)
         {
-            buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
+            //buttonProjections.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonNewProjection_Leave(object sender, EventArgs e)
         {
-            buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
+            //buttonNewProjection.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonNewMovie_Leave(object sender, EventArgs e)
         {
-            buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
+            //buttonNewMovie.BackColor = Color.FromArgb(20, 139, 160);
         }
 
         private void buttonEmployee_Leave(object sender, EventArgs e)
         {
-            buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
+           // buttonEmployers.BackColor = Color.FromArgb(20, 139, 160);
         }
+        
+
+
+
     }
 }

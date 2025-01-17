@@ -41,11 +41,12 @@ namespace Kino.view
             List<Projection> projections = projectionService.GetProjections();
 
             MovieService movieService = new MovieService(labelStatus);
+            ReservationService rs = new ReservationService(labelStatus);
 
             foreach (Projection projection in projections)
             {
                 Movie movie = movieService.GetMovieById(projection.IdMovie);
-                dataGridViewProjections.Rows.Add(false, movie.NameMovie, projection.Date.ToString(/*"dd.MM.yyyy"*/), projection.Time, projection.IdHall,getNumberOfFreeSeats(projection), "view");
+                dataGridViewProjections.Rows.Add(false, movie.NameMovie, projection.Date.ToString("dd.MM.yyyy"), projection.Time, projection.IdHall, rs.GetNumberOfReservationsByProjectionId(projection.IdProjection), getNumberOfFreeSeats(projection), "view");
             }
         }
 

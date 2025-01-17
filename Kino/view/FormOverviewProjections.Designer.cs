@@ -41,6 +41,7 @@
             this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHall = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTakenSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFreeSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMoviePoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjections)).BeginInit();
@@ -109,6 +110,7 @@
             this.ColumnDate,
             this.ColumnTime,
             this.ColumnHall,
+            this.ColumnTakenSeats,
             this.ColumnFreeSeats});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
@@ -139,6 +141,7 @@
             this.dataGridViewProjections.Size = new System.Drawing.Size(656, 343);
             this.dataGridViewProjections.TabIndex = 36;
             this.dataGridViewProjections.TabStop = false;
+            this.dataGridViewProjections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProjections_CellClick);
             this.dataGridViewProjections.SelectionChanged += new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
             // 
             // ColumnDate
@@ -164,6 +167,15 @@
             this.ColumnHall.HeaderText = "Cinema Hall";
             this.ColumnHall.MinimumWidth = 6;
             this.ColumnHall.Name = "ColumnHall";
+            // 
+            // ColumnTakenSeats
+            // 
+            this.ColumnTakenSeats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnTakenSeats.HeaderText = "Reserved Seats";
+            this.ColumnTakenSeats.MinimumWidth = 6;
+            this.ColumnTakenSeats.Name = "ColumnTakenSeats";
+            this.ColumnTakenSeats.ReadOnly = true;
+            this.ColumnTakenSeats.Width = 164;
             // 
             // ColumnFreeSeats
             // 
@@ -203,6 +215,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHall;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTakenSeats;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFreeSeats;
     }
 }
