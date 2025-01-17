@@ -21,6 +21,8 @@ namespace Kino.view
         Form FormNavigation { get; set; }
         Movie Movie { get; set; }
 
+        public DateTime selectedDate;
+
         public FormOverviewProjections(Form formNavigation, User user, string id)
         {
             InitializeComponent();
@@ -32,6 +34,10 @@ namespace Kino.view
             int movieId = Int32.Parse(id);
             MovieService ms = new MovieService(labelStatus);
             Movie = ms.GetMovieById(movieId);
+
+            dateTimePickerDate.CustomFormat = " ";
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            buttonFilter.Enabled = false;
 
             if (Movie.ImageData != null)
             {
@@ -169,6 +175,64 @@ namespace Kino.view
                 }
             }
 
+        }
+
+        private void buttonFilter_Click(object sender, EventArgs e)
+        {
+            dataGridViewProjections.Rows.Clear();
+            ProjectionService projectionService = new ProjectionService(labelStatus);
+            List<Projection> projections = projectionService.GetProjectionsByMovieDate(selectedDate, Movie.IdMovie);
+            ReservationService reservationService = new ReservationService(labelStatus);
+            if (projections != null)
+            {
+                dataGridViewProjections.SelectionChanged -= new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
+                foreach (Projection projection in projections)
+                {
+                    dataGridViewProjections.Rows.Add(
+                    projection.Date,
+                    projection.Time,
+                    projection.IdHall,
+                    reservationService.GetNumberOfReservationsByProjectionId(projection.IdProjection),
+                    getNumberOfFreeSeats(projection)
+                    );
+                }
+                dataGridViewProjections.ClearSelection();
+                dataGridViewProjections.SelectionChanged += new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
+            }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            buttonFilter.Enabled = false;
+            dateTimePickerDate.CustomFormat = " ";
+
+            dataGridViewProjections.Rows.Clear();
+            ProjectionService projectionService = new ProjectionService(labelStatus);
+            List<Projection> projections = projectionService.GetProjectionsByMovieId(Movie.IdMovie);
+            ReservationService reservationService = new ReservationService(labelStatus);
+            if (projections != null)
+            {
+                dataGridViewProjections.SelectionChanged -= new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
+                foreach (Projection projection in projections)
+                {
+                    dataGridViewProjections.Rows.Add(
+                    projection.Date,
+                    projection.Time,
+                    projection.IdHall,
+                    reservationService.GetNumberOfReservationsByProjectionId(projection.IdProjection),
+                    getNumberOfFreeSeats(projection)
+                    );
+                }
+                dataGridViewProjections.ClearSelection();
+                dataGridViewProjections.SelectionChanged += new System.EventHandler(this.dataGridViewProjections_SelectionChanged);
+            }
+        }
+
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            buttonFilter.Enabled = true;
+            selectedDate = dateTimePickerDate.Value.Date;
+            dateTimePickerDate.CustomFormat = "dd.MM.yyyy";
         }
     }
 }

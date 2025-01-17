@@ -17,6 +17,8 @@ namespace Kino.view
         User User { get; set; }
         Form FormNavigation { get; set; }
 
+        public DateTime selectedDate;
+
         public FormReceipts (Form formNavigation, User user)
         {
             InitializeComponent();
@@ -29,6 +31,10 @@ namespace Kino.view
             DoubleBuffered = true;
 
             labelStatus.Text = "";
+
+            dateTimePickerDate.CustomFormat = " ";
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            buttonFilter.Enabled = false;
 
             FillData();
         }
@@ -99,6 +105,37 @@ namespace Kino.view
                     }
                 }
             }
+        }
+
+        private void buttonFilter_Click(object sender, EventArgs e)
+        {
+            UserService userService = new UserService(labelStatus);
+            ReceiptService receiptService = new ReceiptService(labelStatus);
+            List<Receipt> receipts = receiptService.GetReceipts();
+            dataGridViewReceipts.Rows.Clear();
+
+            foreach (Receipt receipt in receipts)
+            {
+                if(receipt.Created.Date == selectedDate)
+                {
+                    User user = userService.GetUserById(receipt.IdUser);
+                    dataGridViewReceipts.Rows.Add(false, receipt.IdReceipt, receipt.Created, user.Username, receipt.Total, "view");
+                }
+            }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            buttonFilter.Enabled = false;
+            dateTimePickerDate.CustomFormat = " ";
+            FillData();
+        }
+
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            buttonFilter.Enabled = true;
+            selectedDate = dateTimePickerDate.Value.Date;
+            dateTimePickerDate.CustomFormat = "dd.MM.yyyy";
         }
     }
 }

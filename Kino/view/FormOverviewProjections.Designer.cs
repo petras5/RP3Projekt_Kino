@@ -43,6 +43,9 @@
             this.ColumnHall = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTakenSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFreeSeats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.buttonFilter = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMoviePoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProjections)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +86,7 @@
             this.labelDescription.ForeColor = System.Drawing.Color.White;
             this.labelDescription.Location = new System.Drawing.Point(25, 89);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(672, 217);
+            this.labelDescription.Size = new System.Drawing.Size(656, 168);
             this.labelDescription.TabIndex = 35;
             this.labelDescription.Text = "description";
             // 
@@ -185,12 +188,56 @@
             this.ColumnFreeSeats.Name = "ColumnFreeSeats";
             this.ColumnFreeSeats.Width = 125;
             // 
+            // dateTimePickerDate
+            // 
+            this.dateTimePickerDate.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(25, 274);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(228, 29);
+            this.dateTimePickerDate.TabIndex = 37;
+            this.dateTimePickerDate.Value = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
+            this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
+            // 
+            // buttonFilter
+            // 
+            this.buttonFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.buttonFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFilter.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFilter.ForeColor = System.Drawing.Color.White;
+            this.buttonFilter.Location = new System.Drawing.Point(259, 274);
+            this.buttonFilter.Name = "buttonFilter";
+            this.buttonFilter.Size = new System.Drawing.Size(120, 29);
+            this.buttonFilter.TabIndex = 38;
+            this.buttonFilter.Text = "FILTER";
+            this.buttonFilter.UseVisualStyleBackColor = false;
+            this.buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClear.Font = new System.Drawing.Font("Berlin Sans FB", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClear.ForeColor = System.Drawing.Color.White;
+            this.buttonClear.Location = new System.Drawing.Point(385, 274);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(120, 29);
+            this.buttonClear.TabIndex = 39;
+            this.buttonClear.Text = "CLEAR";
+            this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // FormOverviewProjections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Kino.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1050, 680);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonFilter);
+            this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.dataGridViewProjections);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.labelMovieName);
@@ -217,5 +264,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHall;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTakenSeats;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFreeSeats;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.Button buttonFilter;
+        private System.Windows.Forms.Button buttonClear;
     }
 }

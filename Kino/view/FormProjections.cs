@@ -17,6 +17,10 @@ namespace Kino.view
     {
         User User { get; set; }
         Form FormNavigation { get; set; }
+
+        public DateTime selectedDate;
+
+        public bool datePicked;
         public FormProjections(Form formNavigation, User user)
         {
             InitializeComponent();
@@ -29,6 +33,11 @@ namespace Kino.view
             DoubleBuffered = true;
 
             labelStatus.Text = "";
+            datePicked = false;
+
+            dateTimePickerDate.CustomFormat = " ";
+            dateTimePickerDate.Format = DateTimePickerFormat.Custom;
+            buttonFilter.Enabled = false;
 
             FillData();
         }
@@ -50,6 +59,25 @@ namespace Kino.view
             }
         }
 
+        private void FillDataFilterDate()
+        {
+            dataGridViewProjections.Rows.Clear();
+
+            ProjectionService projectionService = new ProjectionService(labelStatus);
+            List<Projection> projections = projectionService.GetProjectionsByDate(selectedDate);
+
+            MovieService movieService = new MovieService(labelStatus);
+            ReservationService rs = new ReservationService(labelStatus);
+
+            if(projections != null) // bez ovog exception
+            {
+                foreach (Projection projection in projections)
+                {
+                    Movie movie = movieService.GetMovieById(projection.IdMovie);
+                    dataGridViewProjections.Rows.Add(false, movie.NameMovie, projection.Date.ToString("dd.MM.yyyy"), projection.Time, projection.IdHall, rs.GetNumberOfReservationsByProjectionId(projection.IdProjection), getNumberOfFreeSeats(projection), "view");
+                }
+            }
+        }
         public int getNumberOfFreeSeats(Projection projection)
         {
             HallService hs = new HallService(labelStatus);
@@ -146,6 +174,38 @@ namespace Kino.view
                     }
                 }
             }
+        }
+
+        private void buttonFilter_Click(object sender, EventArgs e)
+        {
+            if(datePicked) // ako je odabran datum za filtriranje
+            {
+                FillDataFilterDate();
+            }
+            /* 3 slucaja 
+             * 1. dataPicked = true && odabranadvorana
+             * 2. dataPicked = true && nije odabrana dvorana
+             * 3. dataPicked = false && odabrana dvorana
+             * napisala sam ti u ProjectionService funkcije GetProjectionByHallId(int idHall)
+             * i GetProjectionsByHallDate(DateTime date, int hallId) kojoj za argument
+             * dajes ovu public varijablu selectedDate
+            */
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            datePicked = false;
+            buttonFilter.Enabled = false;
+            dateTimePickerDate.CustomFormat = " ";
+            FillData();
+        }
+
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            buttonFilter.Enabled = true;
+            datePicked = true;
+            selectedDate = dateTimePickerDate.Value.Date;
+            dateTimePickerDate.CustomFormat = "dd.MM.yyyy";
         }
     }
 }

@@ -59,7 +59,6 @@ namespace Kino.services
             }
             return receipts;
         }
-
         public Receipt GetReceiptById(int idReceipt)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

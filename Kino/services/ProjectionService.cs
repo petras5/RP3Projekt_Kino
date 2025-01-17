@@ -105,6 +105,176 @@ namespace Kino.services
             }
         }
 
+        public Projection GetProjectionByHallId(int idHall)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Projection WHERE Id_Hall = @idHall ORDER BY Date ASC, Time ASC";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@idHall", idHall);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if a row exists
+                        {
+                            return new Projection(
+                                reader.GetInt32(0),
+                                reader.GetInt32(1),
+                                reader.GetInt32(2),
+                                reader.GetDateTime(3),
+                                reader.GetTimeSpan(4),
+                                reader.GetInt32(5)
+                            );
+                        }
+                        else
+                        {
+                            //MessageBox.Show("No projection with hall id " + idHall + " found in database.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //statusLabel.Text = "No projection with given hall id" + idHall;
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching projection by hall id: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projection by hall id: {ex.Message}";
+                    return null;
+                }
+            }
+        }
+
+        public List<Projection> GetProjectionsByHallDate(DateTime date, int hallId)
+        {
+            List<Projection> projections = new List<Projection>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Projection WHERE Id_Hall = @idHall AND Date = @date";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@idHall", hallId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            projections.Add(new Projection(
+                                reader.GetInt32(0),
+                                reader.GetInt32(1),
+                                reader.GetInt32(2),
+                                reader.GetDateTime(3),
+                                reader.GetTimeSpan(4),
+                                reader.GetInt32(5)
+                            ));
+                        }
+                        if (projections.Count == 0)
+                        {
+                            //statusLabel.Text = $"No projections found for hall ID {hallId} and date {date}.";
+                            return null;
+                        }
+
+                        return projections;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching projections by hall and date: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projections by hall and date: {ex.Message}";
+                    return null;
+                }
+            }
+        }
+        public List<Projection> GetProjectionsByMovieDate(DateTime date, int movieId)
+        {
+            List<Projection> projections = new List<Projection>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Projection WHERE Id_Movie = @idMovie AND Date = @date";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@idMovie", movieId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            projections.Add(new Projection(
+                                reader.GetInt32(0),
+                                reader.GetInt32(1),
+                                reader.GetInt32(2),
+                                reader.GetDateTime(3),
+                                reader.GetTimeSpan(4),
+                                reader.GetInt32(5)
+                            ));
+                        }
+                        if (projections.Count == 0)
+                        {
+                            //statusLabel.Text = $"No projections found for movie ID {idMovie} and date {date}.";
+                            return null;
+                        }
+
+                        return projections;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching projections by movie and date: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projections by movie and date: {ex.Message}";
+                    return null;
+                }
+            }
+        }
+
+        public List<Projection> GetProjectionsByDate(DateTime date)
+        {
+            List<Projection> projections = new List<Projection>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Projection WHERE Date = @date";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@date", date);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            projections.Add(new Projection(
+                                reader.GetInt32(0),
+                                reader.GetInt32(1),
+                                reader.GetInt32(2),
+                                reader.GetDateTime(3),
+                                reader.GetTimeSpan(4),
+                                reader.GetInt32(5)
+                            ));
+                        }
+                        if (projections.Count == 0)
+                        {
+                            //statusLabel.Text = $"No projections found for date {date}.";
+                            return null;
+                        }
+
+                        return projections;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show($"Error fetching projections by date: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    statusLabel.Text = $"Error fetching projections by date: {ex.Message}";
+                    return null;
+                }
+            }
+        }
         public List<Projection> GetProjectionsByMovieId(int idMovie)
         {
             List<Projection> projections = new List<Projection>();
