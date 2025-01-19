@@ -64,6 +64,8 @@ namespace Kino.view
             {
                 Movie newMovie = movieService.InsertMovie(textBoxTitle.Text, textBoxDescription.Text, pictureBoxPoster.Image);
             }
+
+            buttonAdd.Enabled = false;
         }
     }
 }

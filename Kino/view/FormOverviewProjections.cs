@@ -73,6 +73,9 @@ namespace Kino.view
             } else
             {
                 dataGridViewProjections.Visible = false;
+                dateTimePickerDate.Visible = false;
+                buttonClear.Visible = false;
+                buttonFilter.Visible = false;
                 labelStatus.Text = "COMING SOON";
                 labelStatus.ForeColor = Color.White;
                 labelStatus.Font = new Font("Berlin Sans FB", 18);
