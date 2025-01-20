@@ -212,24 +212,25 @@ namespace Kino.view
         {
             ProjectionService projectionService = new ProjectionService(labelStatus);
             MovieService movieService = new MovieService(labelStatus);
-            for (int i = 0; i < dataGridViewProjections.Rows.Count; i++)
+            foreach (DataGridViewRow row in dataGridViewProjections.Rows)
             {
-                if (!dataGridViewProjections.Rows[i].IsNewRow)
+                if (!row.IsNewRow)
                 {
-                    DateTime date = DateTime.Parse(dataGridViewProjections.Rows[i].Cells["PDate"].Value.ToString());
-                    TimeSpan time = TimeSpan.Parse(dataGridViewProjections.Rows[i].Cells["PTime"].Value.ToString());
-                    int hallID = Convert.ToInt32(dataGridViewProjections.Rows[i].Cells["CinemaHall"].Value);
+                    DateTime date = DateTime.Parse(row.Cells["PDate"].Value.ToString());
+                    TimeSpan time = TimeSpan.Parse(row.Cells["PTime"].Value.ToString());
+                    int hallID = Convert.ToInt32(row.Cells["CinemaHall"].Value);
 
                     Projection projection = projectionService.GetProjectionByDateTimeHall(date, time, hallID);
 
-                    if ((bool)dataGridViewProjections.Rows[i].Cells["Delete"].Value == true)
+                    if ((bool)row.Cells["Delete"].Value == true)
                     {
-                        //labelStatus.Text = $"delete projection at date {date}";
+                        // labelStatus.Text = $"delete projection at date {date}";
                         projectionService.DeleteProjectionById(projection.IdProjection);
                         movieService.DeleteMovieIfNeeded(projection.IdMovie);
                     }
                 }
             }
+
 
             buttonDelete.Enabled = false;
 
@@ -328,7 +329,6 @@ namespace Kino.view
             }
             else if((comboBoxHallFilter.SelectedIndex == -1 || string.IsNullOrEmpty(comboBoxHallFilter.Text)) && !datePicked)
             {
-                //labelStatus.Text = "bla";
                 buttonFilter.Enabled = false;
             }
         }
@@ -341,7 +341,6 @@ namespace Kino.view
         {
             if ((comboBoxHallFilter.SelectedIndex == -1 || string.IsNullOrEmpty(comboBoxHallFilter.Text)) && !datePicked)
             {
-                //labelStatus.Text = "blabla";
                 buttonFilter.Enabled = false;
             }
         }
