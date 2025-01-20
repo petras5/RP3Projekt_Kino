@@ -254,13 +254,15 @@ namespace Kino.model
                 {
                     connection.Open();
 
-                    string checkQuery = "SELECT * FROM Projection WHERE Id_Movie = @idMovie";
+                    // Check if there are projections for the given movie
+                    string checkQuery = "SELECT COUNT(*) FROM Projection WHERE Id_Movie = @idMovie";
                     SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
                     checkCommand.Parameters.AddWithValue("@idMovie", idMovie);
 
-                    int numberOfRows = checkCommand.ExecuteNonQuery();
+                    // Use ExecuteScalar to retrieve the count
+                    int numberOfRows = (int)checkCommand.ExecuteScalar();
 
-                    if (numberOfRows <= 0 ) // If no rows exist, delete the movie from 'Movie' table
+                    if (numberOfRows <= 0) // If no projections exist, delete the movie
                     {
                         string deleteQuery = "DELETE FROM Movie WHERE Id_Movie = @idMovie";
                         SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
@@ -270,25 +272,23 @@ namespace Kino.model
 
                         if (affectedRows > 0)
                         {
-                            //MessageBox.Show("Movie deleted successfully.");
-                            //labelStatus.Text = "Movie deleted successfully.";
+                            // Movie deleted successfully
                             return true;
                         }
                     }
-                    //MessageBox.Show($"Movie with id {idMovie} could not be deleted beause of {numberOfRows} rows.");
-                    //labelStatus.Text = "Movie could not be deleted.";
+
+                    // Movie was not deleted because projections exist
                     return false;
                 }
                 catch (Exception ex)
                 {
+                    // Log or display the exception
                     MessageBox.Show(
                         $"Error deleting movie: {ex.Message}",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                    //MessageBox.Show("Error deleting movie: {ex.Message}");
-                    // labelStatus.Text = $"Error deleting movie: {ex.Message}";
                     return false;
                 }
             }
