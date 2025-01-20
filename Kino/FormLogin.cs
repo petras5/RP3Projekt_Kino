@@ -43,6 +43,7 @@ namespace Kino
         {
             textBoxUsername.Text = string.Empty;
             textBoxPassword.Text = string.Empty;
+            labelStatus.Text = string.Empty;
         }
 
         private void checkBoxShowPassword_CheckedChanged(object sender, EventArgs e)

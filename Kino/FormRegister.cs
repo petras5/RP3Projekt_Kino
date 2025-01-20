@@ -94,6 +94,7 @@ namespace Kino
             textBoxSurname.Text = string.Empty;
             textBoxPassword.Text = string.Empty;
             textBoxConfirmPassword.Text = string.Empty;
+            labelStatus.Text = string.Empty;
         }
 
         private void labelBackLogin_Click(object sender, EventArgs e)
@@ -105,13 +106,6 @@ namespace Kino
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-
-        //slucajno...
-        private void textBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
