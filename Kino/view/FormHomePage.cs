@@ -57,8 +57,8 @@ namespace Kino.view
             MovieService movieService = new MovieService(labelStatus);
 
             List<Movie> movies = movieService.GetMovies();
-
-            for (int i = 0; i < movies.Count; i++) 
+            int i = 0;
+            foreach (Movie movie in movies) 
             { 
                 PictureBox pictureBox = new PictureBox
                 {
@@ -66,17 +66,17 @@ namespace Kino.view
                     Location = new Point(x, y),
                     SizeMode = PictureBoxSizeMode.Zoom,
                     /*Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}"),*/
-                    Tag = i + 1,
+                    Tag = movie.IdMovie,
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
-                if (movies[i].ImageData != null) {
+                if (movie.ImageData != null) {
 
-                    pictureBox.Image = movieService.byteArrayToImage(movies[i].ImageData, PixelFormat.Format24bppRgb);
+                    pictureBox.Image = movieService.byteArrayToImage(movie.ImageData, PixelFormat.Format24bppRgb);
                 }
                 else
                 {
-                    pictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}");
+                    pictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{movie.IdMovie}");
                 }
 
                 pictureBox.Click += PictureBox_Click;
@@ -90,7 +90,7 @@ namespace Kino.view
                     x = spacing;
                     y += pictureBoxHeight + spacing;
                 }
-
+                i++;
             }
         }
 

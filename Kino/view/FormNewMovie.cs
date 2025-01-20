@@ -66,6 +66,9 @@ namespace Kino.view
             }
 
             buttonAdd.Enabled = false;
+            textBoxTitle.Text = string.Empty;
+            textBoxDescription.Text = string.Empty;
+            pictureBoxPoster.Image = null;
         }
     }
 }

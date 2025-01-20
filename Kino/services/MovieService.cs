@@ -260,7 +260,7 @@ namespace Kino.model
 
                     int numberOfRows = checkCommand.ExecuteNonQuery();
 
-                    if (numberOfRows == 0) // If no rows exist, delete the movie from 'Movie' table
+                    if (numberOfRows <= 0 ) // If no rows exist, delete the movie from 'Movie' table
                     {
                         string deleteQuery = "DELETE FROM Movie WHERE Id_Movie = @idMovie";
                         SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
@@ -270,11 +270,13 @@ namespace Kino.model
 
                         if (affectedRows > 0)
                         {
-                            // labelStatus.Text = "Movie deleted successfully.";
+                            //MessageBox.Show("Movie deleted successfully.");
+                            //labelStatus.Text = "Movie deleted successfully.";
                             return true;
                         }
                     }
-                    // labelStatus.Text = "Movie could not be deleted.";
+                    //MessageBox.Show($"Movie with id {idMovie} could not be deleted beause of {numberOfRows} rows.");
+                    //labelStatus.Text = "Movie could not be deleted.";
                     return false;
                 }
                 catch (Exception ex)
@@ -285,6 +287,7 @@ namespace Kino.model
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
+                    //MessageBox.Show("Error deleting movie: {ex.Message}");
                     // labelStatus.Text = $"Error deleting movie: {ex.Message}";
                     return false;
                 }

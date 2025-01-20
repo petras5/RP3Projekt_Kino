@@ -98,6 +98,11 @@ namespace Kino.view
                                         (int)numericUpDownPrice.Value
                     );
                 buttonAdd.Enabled = false;
+                comboBoxHalls.SelectedIndex = -1;
+                comboBoxMovies.SelectedIndex = -1;
+                dateTimePickerTime.Value = DateTime.Now;
+                monthCalendarDate.SelectionStart = DateTime.Now.Date;
+                numericUpDownPrice.Value = 10;
             }
             
         }

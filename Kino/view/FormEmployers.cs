@@ -48,7 +48,11 @@ namespace Kino.view
 
             foreach (User user in users)
             {
-                dataGridView1.Rows.Add(user.IdUser, user.Name, user.Surname, user.Username, user.Role);
+                if (user.IdUser != User.IdUser)
+                {
+                    dataGridView1.Rows.Add(user.IdUser, user.Name, user.Surname, user.Username, user.Role);
+                }
+                
             }
 
         }
