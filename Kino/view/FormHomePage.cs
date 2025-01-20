@@ -58,7 +58,7 @@ namespace Kino.view
 
             List<Movie> movies = movieService.GetMovies();
 
-            for (int i = 0; i < movies.Count; i++)
+            for (int i = 0; i < movies.Count; i++) 
             { 
                 PictureBox pictureBox = new PictureBox
                 {

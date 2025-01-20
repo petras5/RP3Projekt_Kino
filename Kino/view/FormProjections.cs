@@ -175,6 +175,7 @@ namespace Kino.view
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             ProjectionService projectionService = new ProjectionService(labelStatus);
+            MovieService movieService = new MovieService(labelStatus);
             for (int i = 0; i < dataGridViewProjections.Rows.Count; i++)
             {
                 if (!dataGridViewProjections.Rows[i].IsNewRow)
@@ -189,6 +190,7 @@ namespace Kino.view
                     {
                         //labelStatus.Text = $"delete projection at date {date}";
                         projectionService.DeleteProjectionById(projection.IdProjection);
+                        movieService.DeleteMovieIfNeeded(projection.IdMovie);
                     }
                 }
             }
