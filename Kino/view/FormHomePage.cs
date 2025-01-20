@@ -14,12 +14,21 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
+    /// <summary>
+    /// The FormHomePage class represents the home page of the Kino application. 
+    /// It displays a dynamic layout of movie posters that can be clicked to view projections for a specific movie.
+    /// </summary>
     public partial class FormHomePage : Form
     {
-        User User { get; set; }
+        User User { get; set; } // user currently logged into the app
 
-        Form FormNavigation { get; set; }
-       
+        Form FormNavigation { get; set; } // navigation form managing this home page form
+
+        /// <summary>
+        /// Constructor for FormHomePage.
+        /// </summary>
+        /// <param name="formNavigation">The parent navigation form.</param>
+        /// <param name="user">The current user.</param>
         public FormHomePage(Form formNavigation, User user)
         {
             SuspendLayout();
@@ -38,13 +47,16 @@ namespace Kino.view
             ResumeLayout();
         }
 
-        
+        /// <summary>
+        /// Dynamically generates a layout of movie posters based on the available movies.
+        /// </summary>
         public void GenerateMovieLayout()
         {
-            Type resourceType = typeof(Properties.Resources);
+            Type resourceType = typeof(Properties.Resources); // access application resources
 
             this.Controls.Clear(); // Clear existing controls if any
 
+            // Layout parameters
             int pictureBoxWidth = 300;  // Width of each PictureBox
             int pictureBoxHeight = 410; // Height of each PictureBox
             int spacing = 20;           // Spacing between PictureBoxes
@@ -58,6 +70,8 @@ namespace Kino.view
 
             List<Movie> movies = movieService.GetMovies();
             int i = 0;
+
+            // Create a PictureBox for each movie.
             foreach (Movie movie in movies) 
             { 
                 PictureBox pictureBox = new PictureBox
@@ -65,11 +79,11 @@ namespace Kino.view
                     Size = new Size(pictureBoxWidth, pictureBoxHeight),
                     Location = new Point(x, y),
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    /*Image = (Image)Properties.Resources.ResourceManager.GetObject($"movie_{i + 1}"),*/
                     Tag = movie.IdMovie,
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
+                // Assign the appropriate image to the PictureBox.
                 if (movie.ImageData != null) {
 
                     pictureBox.Image = movieService.byteArrayToImage(movie.ImageData, PixelFormat.Format24bppRgb);
@@ -83,17 +97,22 @@ namespace Kino.view
 
                 this.Controls.Add(pictureBox);
 
-                // Positioning logic
+                // Position the next PictureBox
                 x += pictureBoxWidth + spacing;
                 if ((i + 1) % 3 == 0)
                 {
-                    x = spacing;
-                    y += pictureBoxHeight + spacing;
+                    x = spacing; // Reset X position for a new row.
+                    y += pictureBoxHeight + spacing; // Move to the next row.
                 }
                 i++;
             }
         }
 
+        /// <summary>
+        /// Handles the click event of a movie's PictureBox to navigate to the movie's projections.
+        /// </summary>
+        /// <param name="sender">The PictureBox that was clicked.</param>
+        /// <param name="e">Event arguments.</param>
         private void PictureBox_Click(object sender, EventArgs e)
         {
             PictureBox clickedPictureBox = sender as PictureBox;

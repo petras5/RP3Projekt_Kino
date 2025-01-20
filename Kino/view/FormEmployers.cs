@@ -12,9 +12,17 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
+    /// <summary>
+    /// Form for managing employers, including viewing and updating their roles.
+    /// </summary>
     public partial class FormEmployers : Form
     {
-        User User { get; set; }
+        User User { get; set; } // currently logged-in user
+
+        /// <summary>
+        /// Constructor for FormEmployers.
+        /// </summary>
+        /// <param name="user"> currently logged-in user </param>
         public FormEmployers(User user)
         {
             InitializeComponent();
@@ -31,10 +39,14 @@ namespace Kino.view
         }
 
         
+        // Dictionary containing role IDs and their corresponding names.
         Dictionary<int, string> roles = new Dictionary<int, string>() {
                                   {1, "Employee"},
                                   {2, "Admin"}  };
 
+        /// <summary>
+        /// Fills the DataGridView with user data.
+        /// </summary>
         private void FillData()
         {
             UserService userService = new UserService(labelStatus);
@@ -57,20 +69,20 @@ namespace Kino.view
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Enables the submit button when a role is changed in the DataGridView.
+        /// </summary>
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Role")
             {
-                //var selectedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 buttonSubmit.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Submits the changes made to user roles in the DataGridView.
+        /// </summary>
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             UserService userService = new UserService(labelStatus);

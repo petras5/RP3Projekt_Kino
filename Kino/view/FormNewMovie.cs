@@ -12,9 +12,17 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
+    /// <summary>
+    /// Represents the form where a user can add a new movie, including title, description, and poster image.
+    /// </summary>
     public partial class FormNewMovie : Form
     {
-        User User { get; set; }
+        User User { get; set; } // currently logged-in user
+
+        /// <summary>
+        /// Constructor for FormNewMovie.
+        /// </summary>
+        /// <param name="user">The currently logged-in user.</param>
         public FormNewMovie(User user)
         {
             InitializeComponent();
@@ -25,6 +33,10 @@ namespace Kino.view
             TopMost = true;
         }
 
+        /// <summary>
+        /// Handles the event when the title text changes.
+        /// Enables or disables the Add button based on the form's input fields.
+        /// </summary>
         private void textBoxTitle_TextChanged(object sender, EventArgs e)
         {
             if (textBoxTitle.Text != string.Empty && textBoxDescription.Text != string.Empty && pictureBoxPoster.Image != null)
@@ -33,6 +45,10 @@ namespace Kino.view
                 buttonAdd.Enabled= false;
         }
 
+        /// <summary>
+        /// Handles the event when the description text changes.
+        /// Enables or disables the Add button based on the form's input fields.
+        /// </summary>
         private void textBoxDescription_TextChanged(object sender, EventArgs e)
         {
             if (textBoxDescription.Text != string.Empty && textBoxTitle.Text != string.Empty && pictureBoxPoster.Image != null)
@@ -41,6 +57,10 @@ namespace Kino.view
                 buttonAdd.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the event when the user clicks the Choose button to select a poster image.
+        /// Opens a file dialog for the user to select an image.
+        /// </summary>
         private void buttonChoose_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -52,6 +72,10 @@ namespace Kino.view
             }
         }
 
+        /// <summary>
+        /// Handles the event when the user clicks the Add button to add a new movie.
+        /// Checks if the movie already exists and adds it if it doesn't.
+        /// </summary>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             MovieService movieService = new MovieService(labelStatus);

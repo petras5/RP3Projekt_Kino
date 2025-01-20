@@ -55,7 +55,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "NEW PROJECTION";
             this.label1.Visible = false;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelStatus
             // 

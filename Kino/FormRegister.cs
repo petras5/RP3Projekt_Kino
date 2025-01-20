@@ -16,12 +16,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Kino
 {
+    /// <summary>
+    /// Form for user registration.
+    /// </summary>
     public partial class FormRegister : Form
     {
+        /// <summary>
+        /// Constructor for FormRegister.
+        /// </summary>
         public FormRegister()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Handles the Register button click event to validate user inputs and register a new user.
+        /// </summary>
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             UserService userService = new UserService(labelStatus);
@@ -73,6 +82,9 @@ namespace Kino
             }
         }
 
+        /// <summary>
+        /// Handles the event for showing or hiding the password text fields.
+        /// </summary>
         private void checkBoxShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxShowPassword.Checked)
@@ -87,6 +99,9 @@ namespace Kino
             }
         }
 
+        /// <summary>
+        /// Clears all input fields and status messages.
+        /// </summary>
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBoxUsername.Text = string.Empty;
@@ -97,12 +112,18 @@ namespace Kino
             labelStatus.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Navigates back to the login form when the label is clicked.
+        /// </summary>
         private void labelBackLogin_Click(object sender, EventArgs e)
         {
             new FormLogin(this).Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Exits the application when the Exit button is clicked.
+        /// </summary>
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();

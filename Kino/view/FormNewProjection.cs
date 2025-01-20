@@ -12,9 +12,17 @@ using System.Windows.Forms;
 
 namespace Kino.view
 {
+    /// <summary>
+    /// Represents the form where a user can add a new movie projection to the system, including the movie, hall, time, and price.
+    /// </summary>
     public partial class FormNewProjection : Form
     {
-        User User { get; set; }
+        User User { get; set; } // currently logged-in user
+
+        /// <summary>
+        /// Constructor for FormNewProjection.
+        /// </summary>
+        /// <param name="user">The currently logged-in user.</param>
         public FormNewProjection(User user)
         {
             InitializeComponent();
@@ -30,6 +38,9 @@ namespace Kino.view
             FillData();
         }
 
+        /// <summary>
+        /// Fills the data for available movies and halls into the respective combo boxes.
+        /// </summary>
         public void FillData()
         {
             MovieService movieService = new MovieService(labelStatus);
@@ -56,12 +67,10 @@ namespace Kino.view
 
         }
 
-        //slucajno dodano...
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Handles the event when the selected movie changes.
+        /// Enables the Add button if both movie and hall are selected.
+        /// </summary>
         private void comboBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxHalls.SelectedIndex != -1 && comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
@@ -72,12 +81,21 @@ namespace Kino.view
 
         }
 
+        /// <summary>
+        /// Handles the event when the selected hall changes.
+        /// Enables the Add button if both hall and movie are selected.
+        /// </summary>
         private void comboBoxHalls_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxMovies.SelectedIndex != -1 && comboBoxHalls.SelectedValue != null && comboBoxMovies.SelectedValue != null)
                 buttonAdd.Enabled = true;
         }
 
+        /// <summary>
+        /// Handles the event when the Add button is clicked.
+        /// Adds a new projection with the selected movie, hall, time, and price
+        /// if there is no collision with another projection in database.
+        /// </summary>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             ProjectionService projectionService = new ProjectionService(labelStatus);
@@ -107,6 +125,10 @@ namespace Kino.view
             
         }
 
+        /// <summary>
+        /// Handles the event when the date selection changes in the calendar.
+        /// Enables the Add button if both movie and hall are selected.
+        /// </summary>
         private void monthCalendarDate_DateChanged(object sender, DateRangeEventArgs e)
         {
             if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
@@ -115,6 +137,10 @@ namespace Kino.view
             }
         }
 
+        /// <summary>
+        /// Handles the event when the time value in the DateTimePicker changes.
+        /// Enables the Add button if both movie and hall are selected.
+        /// </summary>
         private void dateTimePickerTime_ValueChanged(object sender, EventArgs e)
         {
             if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)
@@ -123,6 +149,10 @@ namespace Kino.view
             }
         }
 
+        /// <summary>
+        /// Handles the event when the price value changes in the numeric up-down control.
+        /// Enables the Add button if both movie and hall are selected.
+        /// </summary>
         private void numericUpDownPrice_ValueChanged(object sender, EventArgs e)
         {
             if (comboBoxMovies.SelectedValue != null && comboBoxHalls.SelectedValue != null)

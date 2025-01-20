@@ -103,7 +103,6 @@
             this.buttonEmployers.Text = "EMPLOYERS";
             this.buttonEmployers.UseVisualStyleBackColor = false;
             this.buttonEmployers.Click += new System.EventHandler(this.buttonEmployers_Click);
-            this.buttonEmployers.Leave += new System.EventHandler(this.buttonEmployee_Leave);
             // 
             // buttonNewMovie
             // 
@@ -120,7 +119,6 @@
             this.buttonNewMovie.Text = "NEW MOVIE";
             this.buttonNewMovie.UseVisualStyleBackColor = false;
             this.buttonNewMovie.Click += new System.EventHandler(this.buttonNewMovie_Click);
-            this.buttonNewMovie.Leave += new System.EventHandler(this.buttonNewMovie_Leave);
             // 
             // buttonNewProjection
             // 
@@ -137,7 +135,6 @@
             this.buttonNewProjection.Text = "NEW PROJECTION";
             this.buttonNewProjection.UseVisualStyleBackColor = false;
             this.buttonNewProjection.Click += new System.EventHandler(this.buttonNewProjection_Click);
-            this.buttonNewProjection.Leave += new System.EventHandler(this.buttonNewProjection_Leave);
             // 
             // buttonProjections
             // 
@@ -154,7 +151,6 @@
             this.buttonProjections.Text = "PROJECTIONS";
             this.buttonProjections.UseVisualStyleBackColor = false;
             this.buttonProjections.Click += new System.EventHandler(this.buttonProjections_Click);
-            this.buttonProjections.Leave += new System.EventHandler(this.buttonProjections_Leave);
             // 
             // buttonReceipts
             // 
@@ -171,7 +167,6 @@
             this.buttonReceipts.Text = "RECEIPTS";
             this.buttonReceipts.UseVisualStyleBackColor = false;
             this.buttonReceipts.Click += new System.EventHandler(this.buttonReceipts_Click);
-            this.buttonReceipts.Leave += new System.EventHandler(this.buttonReservations_Leave);
             // 
             // buttonHome
             // 
@@ -188,7 +183,6 @@
             this.buttonHome.Text = "HOME";
             this.buttonHome.UseVisualStyleBackColor = false;
             this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
-            this.buttonHome.Leave += new System.EventHandler(this.buttonHome_Leave);
             // 
             // panelUser
             // 
@@ -261,7 +255,6 @@
             this.Name = "FormNavigation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.FormNavigation_Load);
             this.panelNavigation.ResumeLayout(false);
             this.panelUser.ResumeLayout(false);
             this.panelUser.PerformLayout();

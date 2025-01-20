@@ -14,17 +14,30 @@ using System.Xml.Linq;
 
 namespace Kino.view
 {
+    /// <summary>
+    /// Represents a form that manages seat reservations for a movie projection.
+    /// </summary>
     public partial class FormHallSeats : Form
     {
-        User User { get; set; }
-        Form FormNavigation { get; set; }
+        User User { get; set; } // currently logged-in user
+        Form FormNavigation { get; set; } // reference to FormNavigation
 
-        Movie Movie { get; set; }
-        Projection Projection { get; set; }
+        Movie Movie { get; set; } // movie whose projection is shown
+        Projection Projection { get; set; } // currently selected projection
 
+        // Tracks the mapping of seat coordinates to control indices.
         public Dictionary<(int, int), int> seatControlIndices = new Dictionary<(int, int), int>();
 
+        // Stores the selected seats and their prices.
         public Dictionary<(int, int), decimal> selectedSeats = new Dictionary<(int, int), decimal> ();
+
+        /// <summary>
+        /// Constructor for FormHallSeats.
+        /// </summary>
+        /// <param name="formNavigation">The navigation form.</param>
+        /// <param name="user">The user interacting with the form.</param>
+        /// <param name="movie">The movie being shown.</param>
+        /// <param name="projection">The projection details.</param>
         public FormHallSeats(Form formNavigation, User user, Movie movie, Projection projection)
         {
             InitializeComponent();
@@ -47,6 +60,9 @@ namespace Kino.view
             buttonReserve.Enabled = false;
         }
 
+        /// <summary>
+        /// Draws the seat layout for the hall and initializes seat controls.
+        /// </summary>
         private void DrawSeats()
         {
             HallService hs = new HallService(labelStatus);
@@ -101,6 +117,9 @@ namespace Kino.view
             }
         }
 
+        /// <summary>
+        /// Handles seat selection and toggles their state.
+        /// </summary>
         private void pictureBoxSeat_Click(object sender, EventArgs e)
         {
             // Load images
@@ -206,6 +225,9 @@ namespace Kino.view
             }
         }
 
+        /// <summary>
+        /// Calculates the price of a specific seat based on its row.
+        /// </summary>
         private decimal getPriceOfSeat(int row, int column)
         {
             HallService hs = new HallService(labelStatus);
@@ -223,6 +245,9 @@ namespace Kino.view
             return regularPrice;
         }
 
+        /// <summary>
+        /// Displays the selected seats and their total price.
+        /// </summary>
         public void SelectedSeatsPrintInfo()
         {
             decimal totalPrice = 0m;
@@ -239,6 +264,9 @@ namespace Kino.view
             labelSelectedSeats.Text += "\nTOTAL PRICE: " + totalPrice;
         }
 
+        /// <summary>
+        /// Confirms seat reservations and generates a receipt.
+        /// </summary>
         private void buttonReserve_Click(object sender, EventArgs e)
         {
             ReceiptService receiptService = new ReceiptService(labelStatus);
